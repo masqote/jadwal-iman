@@ -1,0 +1,28 @@
+.page-enter-active,
+.page-leave-active {
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+  transition-duration: 300ms;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+/* a.nuxt-link-active {
+  font-weight: bold;
+} */
+/* exact link will show the primary color for only the exact matching link */
+a.nuxt-link-exact-active {
+  @apply bg-primary-light rounded-md;
+}
+
+.hide-scroll {
+  overflow: scroll;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  @apply hidden; /* make scrollbar transparent */
+  width: 0px;
+}
