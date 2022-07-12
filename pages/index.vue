@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-60 bg-primary">
+    <div class="h-52 bg-primary">
       <img src="~/assets/img/idul-adha.jpeg" class="h-full w-full" alt="" />
     </div>
     <div class="relative">
@@ -28,7 +28,7 @@
             {{ date[0].tahun }}
           </p>
         </span>
-        <NuxtLink to="/jadwal-kajian">
+        <NuxtLink to="/jadwal-kajian/hari-ini">
           <div class="flex flex-row items-center mt-1 space-x-1">
             <img src="~/assets/svg/eye1.svg" class="h-4 w-4" alt="" />
             <span class="text-xs text-primary">Lihat Semua</span>
@@ -40,7 +40,7 @@
           <br />
           <p class="text-sm"><br /></p>
         </span>
-        <NuxtLink to="/jadwal-kajian">
+        <NuxtLink to="/jadwal-kajian/hari-ini">
           <div class="flex flex-row items-center mt-1 space-x-1">
             <span class="text-xs text-primary"><br /></span>
           </div>
@@ -97,15 +97,6 @@ export default {
   },
   mounted() {
     // Load tanggal perhari
-    const asd = this.$time
-    const zxc = '15:20:00'
-    if (zxc > asd) {
-      console.log('benar')
-    } else {
-      console.log('salah')
-    }
-    console.log(zxc)
-    console.log(asd)
     this.getDate()
     // Load Jadwal berdasarkan tanggal yang dipilih
     this.getJadwal()

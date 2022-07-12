@@ -2,7 +2,8 @@
   <div
     @mouseenter="bounce = true"
     @mouseleave="bounce = false"
-    class="shadow-xl flex justify-center rounded-lg w-28 h-32 border bg-primary cursor-pointer transition transform ease-in-out delay-150 hover:scale-105 hover:opacity-90 duration-300"
+    class="shadow-xl flex justify-center rounded-lg w-28 h-32 border bg-primary cursor-pointer"
+    :class="{ 'transform scale-105': selected }"
   >
     <div class="flex w-full flex-col items-center overflow-visible">
       <div class="w-full text-lg text-center py-1 text-primary-font-light">
@@ -10,9 +11,16 @@
         {{ month }}
       </div>
       <div
-        class="flex flex-col w-full h-full items-center justify-center bg-primary-light rounded-b-lg text-primary-font-dark"
+        class="relative flex flex-col w-full h-full items-center justify-center bg-primary-light rounded-b-lg text-primary-font-dark"
       >
-        <span class="text-5xl font-bold">
+        <!-- <div class="absolute w-full h-full" v-show="selected">
+          <img
+            src="~/assets/svg/checked2.svg"
+            class="w-7 h-7 absolute -translate-x-1/2 left-1/2 -bottom-4"
+            alt=""
+          />
+        </div> -->
+        <span class="text-5xl font-bold" :class="{ 'text-white': selected }">
           <!-- Tanggal -->
           {{ date | removeZero }}
         </span>
@@ -54,6 +62,10 @@ export default {
     day: {
       type: String,
       default: 'Jumat',
+    },
+    selected: {
+      type: Boolean,
+      default: false,
     },
   },
 }

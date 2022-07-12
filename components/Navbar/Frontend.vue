@@ -25,7 +25,11 @@
             <span class="font-bold text-sm text-primary-font-light">Home</span>
           </div>
         </NuxtLink>
-        <NuxtLink to="/jadwal-kajian" class="h-full">
+        <NuxtLink
+          to="/jadwal-kajian/hari-ini"
+          class="h-full"
+          :class="{ 'bg-primary-light rounded-md': bgParent }"
+        >
           <div
             class="hover:opacity-80 cursor-pointer rounded flex items-center justify-center h-full px-4 flex-col"
           >
@@ -80,6 +84,11 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.updateScroll)
+  },
+  computed: {
+    bgParent() {
+      return this.$route.name === 'jadwal-kajian-slug'
+    },
   },
 }
 </script>

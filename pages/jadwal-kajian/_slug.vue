@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-[30vh] bg-primary"></div>
+    <div class="h-52 bg-primary"></div>
     <div class="relative">
       <div
         class="p-1 left-1/2 transform -translate-x-1/2 text-lg flex justify-center text-primary absolute -top-1 z-20"
@@ -18,6 +18,7 @@
               :day="x.hari"
               class="mr-2"
               @click.native="getJadwal(x.full)"
+              :selected="x.full === selectedDay"
             />
           </div>
         </div>
@@ -55,27 +56,37 @@ export default {
     return {
       date: null,
       jadwal: null,
-      selectedDay: this.$today,
+      selectedDay: null,
+      slug: this.$route.params.slug,
     }
   },
+
   mounted() {
     // Load tanggal perhari
+
     this.getDate()
     // Load Jadwal berdasarkan tanggal yang dipilih
     this.getJadwal()
   },
+
   methods: {
     getDate() {
       this.$axios.$get('date-single').then(({ data }) => {
         this.date = data
       })
     },
-    getJadwal(date = this.selectedDay) {
+    getJadwal(date = this.slug) {
+      if (!date) {
+        date = 'hari-ini'
+      }
+      history.pushState({}, null, '/jadwal-kajian/' + encodeURIComponent(date))
+
+      this.selectedDay = date === 'hari-ini' ? this.$today : date
       this.jadwal = null
       this.$axios
         .$get('get-jadwal', {
           params: {
-            day: date,
+            day: date === 'hari-ini' ? this.$today : date,
           },
         })
         .then(({ data }) => {

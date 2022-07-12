@@ -1,4 +1,4 @@
-.page-enter-active,
+/* .page-enter-active,
 .page-leave-active {
   transition-property: opacity;
   transition-timing-function: ease-in-out;
@@ -8,10 +8,21 @@
 .page-enter,
 .page-leave-to {
   opacity: 0;
+} */
+
+/* .page-enter-active,
+.page-leave-active {
+  transition: 0.2s;
 }
 
+.page-enter,
+.page-leave-active {
+  transform: translateY(15px);
+  opacity: 0;
+} */
+
 /* a.nuxt-link-active {
-  font-weight: bold;
+  @apply bg-primary-light rounded-md;
 } */
 /* exact link will show the primary color for only the exact matching link */
 a.nuxt-link-exact-active {

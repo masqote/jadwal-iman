@@ -15,9 +15,7 @@
         <div class="flex flex-col h-full px-2">
           <div class="h-full flex flex-row space-x-2 items-center">
             <img src="~/assets/svg/user.svg" class="h-4 w-4" alt="" />
-            <span class="font-bold text-primary-font-dark"
-              >Ustadz {{ ustadz }}</span
-            >
+            <span class="font-bold text-primary-font-dark">{{ ustadz }}</span>
           </div>
           <div class="h-full flex flex-row space-x-2 items-center">
             <img src="~/assets/svg/book.svg" class="h-6 w-6 mt-1" alt="" />
@@ -44,7 +42,6 @@ export default {
   },
   filters: {
     removeJam(val) {
-      // console.log(val)
       val = val.slice(0, -3)
       return val
     },
