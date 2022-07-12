@@ -1,5 +1,13 @@
 <template>
-  <div class="rounded-lg overflow-hidden shadow-lg">
+  <div
+    class="rounded-lg overflow-hidden shadow-lg"
+    @click="
+      $router.push({
+        name: 'detail-kajian-ustadz-slug',
+        params: { ustadz: ustadzName, slug: jam },
+      })
+    "
+  >
     <div class="w-full flex flex-row h-24 items-center">
       <div
         class="w-2/12 h-full items-center flex bg-primary justify-center flex-col border-r"
@@ -62,6 +70,11 @@ export default {
     address: {
       type: String,
       default: null,
+    },
+  },
+  computed: {
+    ustadzName() {
+      return this.ustadz.replace(/\s+/g, '-').toLowerCase()
     },
   },
 }

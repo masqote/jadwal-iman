@@ -12,9 +12,14 @@
       <div
         class="bg-white -mt-10 rounded-lg mx-4 overflow-auto hide-scroll pt-5 drop-shadow-xl"
       >
-        <div class="max-w-screen-sm p-4 flex flex-row bg-white">
+        <div class="max-w-screen-sm p-4 flex flex-row bg-white" v-if="ustadz">
+          <div v-for="x in ustadz" :key="x.id">
+            <CardUstadz :name="x.name" class="mr-2" />
+          </div>
+        </div>
+        <div class="max-w-screen-sm p-4 flex flex-row bg-white" v-else>
           <div v-for="x in 7" :key="x">
-            <CardUstadz class="mr-2" />
+            <CardUstadzPulse class="mr-2" />
           </div>
         </div>
       </div>
@@ -92,16 +97,25 @@ export default {
     return {
       date: null,
       jadwal: null,
+      ustadz: null,
       selectedDay: this.$today,
     }
   },
   mounted() {
+    // Load ustadz
+    this.getUstadz()
     // Load tanggal perhari
     this.getDate()
     // Load Jadwal berdasarkan tanggal yang dipilih
     this.getJadwal()
   },
   methods: {
+    getUstadz() {
+      this.$axios.$get('get-ustadz').then(({ ustadz }) => {
+        this.ustadz = ustadz
+        console.log(ustadz)
+      })
+    },
     getDate() {
       this.$axios.$get('date-single').then(({ data }) => {
         this.date = data

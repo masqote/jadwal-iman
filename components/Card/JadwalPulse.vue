@@ -2,7 +2,7 @@
   <div class="animate-pulse rounded-lg overflow-hidden shadow-lg">
     <div class="w-full flex flex-row h-24 items-center">
       <div
-        class="w-2/12 h-full items-center flex bg-gray-500 justify-center flex-col border-r"
+        class="w-2/12 h-full items-center flex bg-gray-400 justify-center flex-col border-r"
       >
         <span class="font-bold text-primary-font-light"></span>
         <span class="font-bold text-primary-font-light"></span>

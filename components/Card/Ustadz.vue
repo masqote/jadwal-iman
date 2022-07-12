@@ -9,7 +9,7 @@
         <span
           class="p-2 text-center text-base font-bold text-primary-font-light"
         >
-          Ustadz Syafiq Riza Basalamah M.A
+          {{ name }}
         </span>
       </div>
     </div>
@@ -23,7 +23,12 @@ export default {
   },
 
   filters: {},
-  props: {},
+  props: {
+    name: {
+      type: String,
+      default: null,
+    },
+  },
 }
 </script>
 
