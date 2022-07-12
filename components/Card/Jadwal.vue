@@ -3,8 +3,8 @@
     class="rounded-lg overflow-hidden shadow-lg"
     @click="
       $router.push({
-        name: 'detail-kajian-ustadz-slug',
-        params: { ustadz: ustadzName, slug: jam },
+        name: 'detail-kajian-ustadz-date-id',
+        params: { ustadz: ustadzName, date: date, id: id },
       })
     "
   >
@@ -69,6 +69,14 @@ export default {
     },
     address: {
       type: String,
+      default: null,
+    },
+    date: {
+      type: String,
+      default: null,
+    },
+    id: {
+      type: Number,
       default: null,
     },
   },

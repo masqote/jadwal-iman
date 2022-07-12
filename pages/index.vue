@@ -61,6 +61,8 @@
             :ustadz="y.ustadz_name"
             :title="y.title"
             :address="y.address"
+            :date="y.date_at"
+            :id="y.id"
           />
         </div>
       </div>
