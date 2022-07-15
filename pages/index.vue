@@ -62,7 +62,7 @@
             :title="y.title"
             :address="y.address"
             :date="y.date_at"
-            :id="y.id"
+            :slug="y.slug"
           />
         </div>
       </div>
@@ -84,7 +84,7 @@
       </div>
       <div class="space-y-2 mt-2">
         <div v-for="b in 5" :key="b">
-          <CardBerita />
+          <CardBerita :thumbnail="'https://source.unsplash.com/300x200?' + b" />
         </div>
       </div>
     </div>
@@ -115,7 +115,6 @@ export default {
     getUstadz() {
       this.$axios.$get('get-ustadz').then(({ ustadz }) => {
         this.ustadz = ustadz
-        console.log(ustadz)
       })
     },
     getDate() {

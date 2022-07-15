@@ -1,10 +1,10 @@
 <template>
   <div
-    class="rounded-lg overflow-hidden shadow-lg"
+    class="rounded-lg overflow-hidden shadow-lg cursor-pointer"
     @click="
       $router.push({
-        name: 'detail-kajian-ustadz-date-id',
-        params: { ustadz: ustadzName, date: date, id: id },
+        name: 'detail-kajian-ustadz-date-slug',
+        params: { ustadz: ustadzName, date: date, slug: slug },
       })
     "
   >
@@ -75,8 +75,8 @@ export default {
       type: String,
       default: null,
     },
-    id: {
-      type: Number,
+    slug: {
+      type: String,
       default: null,
     },
   },

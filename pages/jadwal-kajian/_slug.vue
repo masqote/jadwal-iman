@@ -38,7 +38,7 @@
             :title="y.title"
             :address="y.address"
             :date="y.date_at"
-            :id="y.id"
+            :slug="y.slug"
           />
         </div>
       </div>

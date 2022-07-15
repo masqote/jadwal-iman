@@ -5,7 +5,7 @@
     >
       <div class="w-4/12">
         <img
-          src="~/assets/img/blog.jpg"
+          :src="thumbnail"
           class="h-full w-full object-cover rounded-l"
           alt=""
         />
@@ -27,7 +27,17 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {}
+  },
+  props: {
+    thumbnail: {
+      type: String,
+      default: null,
+    },
+  },
+}
 </script>
 
 <style></style>
