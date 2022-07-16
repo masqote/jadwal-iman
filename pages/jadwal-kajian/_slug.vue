@@ -34,6 +34,16 @@
       </div>
     </div>
     <div class="p-4 pb-4">
+      <!-- <div class="flex justify-center text-red-600 mb-2" v-if="jadwal">
+        <span class="text-sm"
+          >Tanggal Dipilih :
+          {{
+            $route.params.slug === 'hari-ini'
+              ? $dayjs($today).format('DD MMMM YYYY')
+              : $dayjs(selectedDay).format('DD MMMM YYYY')
+          }}</span
+        >
+      </div> -->
       <div class="space-y-3" v-if="jadwal">
         <div v-for="y in jadwal" :key="y.id">
           <CardJadwal
@@ -43,6 +53,7 @@
             :address="y.address"
             :date="y.date_at"
             :slug="y.slug"
+            :province="y.province_name"
           />
         </div>
       </div>
@@ -69,7 +80,6 @@ export default {
 
   mounted() {
     // Load tanggal perhari
-
     this.getDate()
     // Load Jadwal berdasarkan tanggal yang dipilih
     this.getJadwal()

@@ -62,6 +62,7 @@
             :address="y.address"
             :date="y.date_at"
             :slug="y.slug"
+            :province="y.province_name"
           />
         </div>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="h-32 bg-primary relative overflow-hidden z-10">
-      <div class="px-4">
+    <div class="h-32 bg-primary-light relative overflow-hidden z-10">
+      <div class="px-6 flex justify-center">
         <h2 class="text-2xl font-bold text-white py-8">Detail Kajian</h2>
       </div>
     </div>
@@ -28,7 +28,8 @@
             >
             <span class="w-1/12">:</span>
             <span class="w-7/12 text-primary"
-              >{{ $dayjs(data.date_at).format('dddd, DD MMMM YYYY') }}
+              >{{ $dayjs(data.date_at).format('dddd') | ahad }},
+              {{ $dayjs(data.date_at).format('DD MMMM YYYY') }}
             </span>
           </div>
           <div class="flex flex-row w-full pt-1">
@@ -75,6 +76,59 @@
         </div>
       </div>
     </div>
+    <div class="mx-4 rounded-lg mt-6" v-if="data">
+      <div class="flex flex-row justify-between">
+        <div class="flex flex-col">
+          <span class="text-primary-font-dark text-base font-bold"
+            >Kajian Lainnya :</span
+          >
+          <span class="text-sm text-primary"
+            >{{ $dayjs(data.date_at).format('dddd') | ahad }},
+            {{ $dayjs(data.date_at).format('DD MMMM YYYY') }}</span
+          >
+        </div>
+
+        <div class="flex self-end" v-if="jadwalLainnya">
+          <NuxtLink :to="'/jadwal-kajian/' + data.date_at">
+            <div class="flex flex-row items-center mt-1 space-x-1">
+              <img src="~/assets/svg/eye1.svg" class="h-4 w-4" alt="" />
+              <span class="text-xs text-primary">Lihat Semua</span>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+      <div class="mt-2">
+        <div v-if="jadwalLainnya" class="space-y-3">
+          <div v-for="(y, index) in jadwalLainnya" :key="y.id">
+            <div v-if="index < 11 && y.slug != slug" class="space-y-1">
+              <CardJadwal
+                :jam="y.time_at"
+                :ustadz="y.ustadz_name"
+                :title="y.title"
+                :address="y.address"
+                :date="y.date_at"
+                :slug="y.slug"
+                :province="y.province_name"
+              />
+            </div>
+          </div>
+        </div>
+        <div v-else class="text-sm text-red-600">
+          Maaf, Jadwal tidak dapat ditemukan di wilayah anda, harap cari jadwal
+          lain.
+          <br />
+          <br />
+          <span class="text-primary-font-dark text-sm">Cari jadwal lain :</span>
+          <NuxtLink :to="'/jadwal-kajian/' + data.date_at"
+            ><span class="text-sm text-primary underline"
+              >Lihat disini</span
+            ></NuxtLink
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="invisible mt-10">.</div>
   </div>
 </template>
 
@@ -85,19 +139,23 @@ export default {
     return {
       slug: this.$route.params.slug,
       data: null,
+      jadwalLainnya: null,
     }
   },
   filters: {
     ahad(val) {
-      console.log(val)
+      const value = val.split(',')
+      if (value[0] === 'Minggu') {
+        return 'Ahad'
+      } else {
+        return value[0]
+      }
     },
   },
-  created() {
+  mounted() {
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
     })
-  },
-  mounted() {
     this.getJadwal(this.slug)
   },
   computed: {
@@ -110,8 +168,24 @@ export default {
       this.$axios.$get('/get-jadwal/' + val).then(({ data }) => {
         this.data = data
 
-        setTimeout(() => this.$nuxt.$loading.finish(), 500)
+        this.getJadwalLainnya(data.date_at, data.province_id)
       })
+    },
+    getJadwalLainnya(day, province) {
+      this.$axios
+        .$get('/get-jadwal', {
+          params: {
+            day,
+            province,
+          },
+        })
+        .then(({ data }) => {
+          if (data.length > 1) {
+            this.jadwalLainnya = data
+          }
+
+          setTimeout(() => this.$nuxt.$loading.finish(), 500)
+        })
     },
   },
 }

@@ -33,9 +33,10 @@
             </span>
           </div>
           <div class="h-full flex flex-row space-x-2 items-center">
-            <span class="font-medium text-xs text-primary-font-dark">{{
-              address
-            }}</span>
+            <span
+              class="font-medium text-xs text-primary-font-dark line-clamp-1"
+              >{{ address }} - {{ province }}</span
+            >
           </div>
         </div>
       </div>
@@ -76,6 +77,10 @@ export default {
       default: null,
     },
     slug: {
+      type: String,
+      default: null,
+    },
+    province: {
       type: String,
       default: null,
     },
