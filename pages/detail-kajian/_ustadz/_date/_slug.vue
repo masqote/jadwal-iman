@@ -1,19 +1,19 @@
 <template>
   <div>
-    <div class="pt-10" v-if="data">
-      <div class="bg-white mx-4 pb-20 rounded-lg">
-        <div class="px-4">
-          <h2 class="text-2xl font-bold text-primary-font-dark py-8">
-            Detail Kajian
-          </h2>
-        </div>
+    <div class="h-32 bg-primary relative overflow-hidden z-10">
+      <div class="px-4">
+        <h2 class="text-2xl font-bold text-white py-8">Detail Kajian</h2>
+      </div>
+    </div>
+    <div class="pt-10 -mt-20 z-20 relative" v-if="data">
+      <div class="bg-white mx-4 pb-10 pt-6 rounded-lg">
         <div class="px-4 space-y-2 divide-y divide-dashed">
           <div class="flex flex-row w-full pt-1">
             <span class="w-4/12 text-lg font-bold text-primary-font-dark"
               >Penceramah</span
             >
             <span class="w-1/12">:</span>
-            <span class="w-7/12 text-primary">{{ data.ustadz_name }}</span>
+            <span class="w-7/12 text-blue-500">{{ data.ustadz_name }}</span>
           </div>
           <div class="flex flex-row w-full pt-1">
             <span class="w-4/12 text-lg font-bold text-primary-font-dark"
@@ -65,6 +65,14 @@
             ></iframe>
           </div>
         </div>
+        <div class="mx-4 mt-10 flex justify-end">
+          <button
+            class="px-4 py-2 rounded-lg text-primary drop-shadow-lg bg-primary text-sm flex flex-row items-center space-x-2"
+          >
+            <img src="~/assets/svg/whatsapp1.svg" class="w-4 h-4" alt="" />
+            <span class="text-primary-font-light">Share</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -84,6 +92,11 @@ export default {
       console.log(val)
     },
   },
+  created() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+    })
+  },
   mounted() {
     this.getJadwal(this.slug)
   },
@@ -96,6 +109,8 @@ export default {
     getJadwal(val) {
       this.$axios.$get('/get-jadwal/' + val).then(({ data }) => {
         this.data = data
+
+        setTimeout(() => this.$nuxt.$loading.finish(), 500)
       })
     },
   },
@@ -104,6 +119,6 @@ export default {
 
 <style>
 iframe {
-  @apply w-full h-full;
+  @apply w-full h-full z-10;
 }
 </style>

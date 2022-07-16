@@ -26,7 +26,7 @@
 } */
 /* exact link will show the primary color for only the exact matching link */
 a.nuxt-link-exact-active {
-  @apply bg-primary-light rounded-md;
+  @apply bg-primary-light rounded-md grayscale-0;
 }
 
 .hide-scroll {

@@ -1,14 +1,18 @@
 <template>
   <div>
-    <div class="h-52 bg-primary"></div>
-    <div class="relative">
+    <div class="h-32 bg-primary relative overflow-hidden z-10">
+      <div class="px-4">
+        <h2 class="text-2xl font-bold text-white py-8">Jadwal Kajian</h2>
+      </div>
+    </div>
+    <div class="relative z-20">
       <div
         class="p-1 left-1/2 transform -translate-x-1/2 text-lg flex justify-center text-primary absolute -top-1 z-20"
       >
-        Cari Jadwal Kajian
+        Pilih Tanggal Kajian
       </div>
       <div
-        class="bg-white -mt-20 rounded-lg mx-3 overflow-auto hide-scroll pt-5"
+        class="bg-white -mt-10 rounded-lg mx-3 overflow-auto hide-scroll pt-5"
       >
         <div v-if="date" class="max-w-screen-sm p-4 flex flex-row">
           <div v-for="x in date" :key="x.full">

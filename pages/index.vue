@@ -45,18 +45,17 @@
           <br />
           <p class="text-sm"><br /></p>
         </span>
-        <NuxtLink to="/jadwal-kajian/hari-ini">
-          <div class="flex flex-row items-center mt-1 space-x-1">
-            <span class="text-xs text-primary"><br /></span>
-          </div>
-        </NuxtLink>
+
+        <div class="flex flex-row items-center mt-1 space-x-1">
+          <span class="text-xs text-primary"><br /></span>
+        </div>
       </div>
     </div>
     <div class="mt-1 px-4 pb-4">
       <div class="space-y-3" v-if="jadwal">
         <div v-for="(y, index) in jadwal" :key="y.id">
           <CardJadwal
-            v-if="index < 3"
+            v-if="index < 5"
             :jam="y.time_at"
             :ustadz="y.ustadz_name"
             :title="y.title"
