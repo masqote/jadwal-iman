@@ -68,7 +68,7 @@
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'JadwalKajian',
   data() {
     return {
       date: null,

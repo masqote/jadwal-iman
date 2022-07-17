@@ -134,7 +134,7 @@
 
 <script>
 export default {
-  layout: 'detail',
+  // layout: 'detail',
   data() {
     return {
       slug: this.$route.params.slug,
