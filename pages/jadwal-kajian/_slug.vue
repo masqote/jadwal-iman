@@ -91,18 +91,20 @@ export default {
         this.date = data
       })
     },
-    getJadwal(date = this.slug) {
-      if (!date) {
-        date = 'hari-ini'
-      }
-      history.pushState({}, null, '/jadwal-kajian/' + encodeURIComponent(date))
+    getJadwal(date = this.$today) {
+      // console.log(date)
+      // if (!date) {
+      //   date = 'hari-ini'
+      // }
+      // history.pushState({}, null, '/jadwal-kajian/' + encodeURIComponent(date))
+      // this.$router.push({ name: 'jadwal-kajian-slug', params: { slug: date } })
 
-      this.selectedDay = date === 'hari-ini' ? this.$today : date
+      this.selectedDay = date
       this.jadwal = null
       this.$axios
         .$get('get-jadwal', {
           params: {
-            day: date === 'hari-ini' ? this.$today : date,
+            day: date,
           },
         })
         .then(({ data }) => {

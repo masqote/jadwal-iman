@@ -33,7 +33,7 @@
             {{ date[0].tahun }}
           </p>
         </span>
-        <NuxtLink to="/jadwal-kajian/hari-ini">
+        <NuxtLink to="/jadwal-kajian">
           <div class="flex flex-row items-center mt-1 space-x-1">
             <img src="~/assets/svg/eye1.svg" class="h-4 w-4" alt="" />
             <span class="text-xs text-primary">Lihat Semua</span>

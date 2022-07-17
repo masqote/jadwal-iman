@@ -13,7 +13,7 @@
           </div>
         </NuxtLink>
         <NuxtLink
-          to="/jadwal-kajian/hari-ini"
+          to="/jadwal-kajian"
           :class="{
             'shadow-lg bg-primary-light drop-shadow-lg text-white grayscale-0 rounded-md':
               bgParent,
