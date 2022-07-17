@@ -1,47 +1,46 @@
 <template>
-  <div
-    class="rounded-lg overflow-hidden shadow-lg cursor-pointer"
-    @click="
-      $router.push({
-        name: 'detail-kajian-ustadz-date-slug',
-        params: { ustadz: ustadzName, date: date, slug: slug },
-      })
-    "
+  <NuxtLink
+    :to="{
+      name: 'detail-kajian-ustadz-date-slug',
+      params: { ustadz: ustadzName, date: date, slug: slug },
+    }"
   >
-    <div class="w-full flex flex-row h-24 items-center">
-      <div
-        class="w-2/12 h-full items-center flex bg-primary justify-center flex-col border-r"
-      >
-        <span class="font-bold text-primary-font-light">{{
-          jam | removeJam
-        }}</span>
-        <!-- <span class="font-bold text-primary-font-light">AM</span> -->
-      </div>
-      <div
-        class="w-10/12 h-full items-center flex bg-gradient-to-br from-primary via-primary-light to-primary-verylight"
-      >
-        <div class="flex flex-col h-full px-2">
-          <div class="h-full flex flex-row space-x-2 items-center">
-            <img src="~/assets/svg/user.svg" class="h-4 w-4" alt="" />
-            <span class="font-bold text-primary-font-dark">{{ ustadz }}</span>
-          </div>
-          <div class="h-full flex flex-row space-x-2 items-center">
-            <img src="~/assets/svg/book.svg" class="h-6 w-6 mt-1" alt="" />
-            <span
-              class="font-normal text-primary-font-light text-sm line-clamp-2"
-              >{{ title }}
-            </span>
-          </div>
-          <div class="h-full flex flex-row space-x-2 items-center">
-            <span
-              class="font-medium text-xs text-primary-font-dark line-clamp-1"
-              >{{ address }} - {{ province }}</span
-            >
+    <div class="rounded-lg overflow-hidden shadow-lg cursor-pointer">
+      <div class="w-full flex flex-row h-24 items-center">
+        <div
+          class="w-2/12 h-full items-center flex bg-primary justify-center flex-col border-r"
+        >
+          <span class="font-bold text-primary-font-light">{{
+            jam | removeJam
+          }}</span>
+          <!-- <span class="font-bold text-primary-font-light">AM</span> -->
+        </div>
+        <div
+          class="w-10/12 h-full items-center flex bg-gradient-to-br from-primary via-primary-light to-primary-verylight"
+        >
+          <div class="flex flex-col h-full px-2">
+            <div class="h-full flex flex-row space-x-2 items-center">
+              <img src="~/assets/svg/user.svg" class="h-4 w-4" alt="" />
+              <span class="font-bold text-primary-font-dark">{{ ustadz }}</span>
+            </div>
+            <div class="h-full flex flex-row space-x-2 items-center">
+              <img src="~/assets/svg/book.svg" class="h-6 w-6 mt-1" alt="" />
+              <span
+                class="font-normal text-primary-font-light text-sm line-clamp-2"
+                >{{ title }}
+              </span>
+            </div>
+            <div class="h-full flex flex-row space-x-2 items-center">
+              <span
+                class="font-medium text-xs text-primary-font-dark line-clamp-1"
+                >{{ address }} - {{ province }}</span
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script>

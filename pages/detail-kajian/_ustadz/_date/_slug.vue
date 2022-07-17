@@ -80,7 +80,7 @@
       <div class="flex flex-row justify-between">
         <div class="flex flex-col">
           <span class="text-primary-font-dark text-base font-bold"
-            >Kajian Lainnya :</span
+            >Kajian Lainnya di {{ data.province_name }} :</span
           >
           <span class="text-sm text-primary"
             >{{ $dayjs(data.date_at).format('dddd') | ahad }},
