@@ -34,16 +34,12 @@
       </div>
     </div>
     <div class="p-4 pb-4">
-      <!-- <div class="flex justify-center text-red-600 mb-2" v-if="jadwal">
+      <div class="flex justify-center text-red-600 mb-2" v-if="jadwal">
         <span class="text-sm"
-          >Tanggal Dipilih :
-          {{
-            $route.params.slug === 'hari-ini'
-              ? $dayjs($today).format('DD MMMM YYYY')
-              : $dayjs(selectedDay).format('DD MMMM YYYY')
-          }}</span
-        >
-      </div> -->
+          >Tanggal Dipilih : {{ $dayjs(selectedDay).format('dddd') | ahad }},
+          {{ $dayjs(selectedDay).format('DD MMMM YYYY') }}
+        </span>
+      </div>
       <div class="space-y-3" v-if="jadwal">
         <div v-for="y in jadwal" :key="y.id">
           <CardJadwal
@@ -56,7 +52,15 @@
             :province="y.province_name"
           />
         </div>
+        <div
+          class="text-sm text-primary font-bold mt-6d"
+          v-if="jadwal.length <= 0"
+        >
+          <img src="~/assets/img/not_found.jpg" class="w-40 h-40" alt="" />
+          <span>Maaf akhi/ukhti, jadwal yang anda pilih tidak tersedia</span>
+        </div>
       </div>
+
       <div class="space-y-3" v-else>
         <div v-for="y in 5" :key="y">
           <CardJadwalPulse />
@@ -76,6 +80,16 @@ export default {
       selectedDay: null,
       slug: this.$route.params.slug,
     }
+  },
+  filters: {
+    ahad(val) {
+      const value = val.split(',')
+      if (value[0] === 'Minggu') {
+        return 'Ahad'
+      } else {
+        return value[0]
+      }
+    },
   },
 
   mounted() {
