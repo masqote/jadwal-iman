@@ -4,14 +4,14 @@
       <div class="px-6 flex flex-row py-8 items-center">
         <div
           @click="$router.go(-1)"
-          class="flex flex-row items-center justify-start px-3 space-x-1 py-1 -ml-4 cursor-pointer hover:opacity-80"
+          class="flex flex-row items-center justify-start px-3 space-x-1 py-2 -ml-4 cursor-pointer hover:opacity-80"
         >
           <img
             src="~/assets/svg/back3.svg"
             class="w-2 h-2 cursor-pointer"
             alt=""
           />
-          <span class="text-primary-font-light text-xs cursor-pointer"
+          <span class="text-primary-font-light text-sm cursor-pointer"
             >Back</span
           >
         </div>
@@ -180,11 +180,18 @@ export default {
   },
   methods: {
     getJadwal(val) {
-      this.$axios.$get('/get-jadwal/' + val).then(({ data }) => {
-        this.data = data
+      this.$axios
+        .$get('/get-jadwal/' + val)
+        .then(({ data }) => {
+          this.data = data
 
-        this.getJadwalLainnya(data.date_at, data.province_id)
-      })
+          this.getJadwalLainnya(data.date_at, data.province_id)
+        })
+        .catch((err) => {
+          if (err.response.status === 404) {
+            this.$router.go(-1)
+          }
+        })
     },
     getJadwalLainnya(day, province) {
       this.$axios
