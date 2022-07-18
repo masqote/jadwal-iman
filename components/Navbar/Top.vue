@@ -4,10 +4,10 @@
     <div
       class="fixed top-0 z-50 max-w-screen-sm w-full h-14 shadow-lg transition-all duration-200 bg-white drop-shadow-lg border-b"
     >
-      <div class="flex items-center h-full -ml-4">
+      <div class="flex items-center h-full overflow-hidden -ml-3">
         <img
           src="~/assets/img/jadwal_iman_primary.png"
-          class="w-56 h-56"
+          class="h-52 w-52"
           alt=""
           @click="$router.push('/')"
         />

@@ -53,11 +53,13 @@
           />
         </div>
         <div
-          class="text-sm text-primary font-bold mt-6d"
+          class="flex justify-center items-center flex-col"
           v-if="jadwal.length <= 0"
         >
-          <img src="~/assets/img/not_found.jpg" class="w-40 h-40" alt="" />
-          <span>Maaf akhi/ukhti, jadwal yang anda pilih tidak tersedia</span>
+          <img src="~/assets/img/not-found.png" class="w-56 h-56" alt="" />
+          <span class="text-sm text-primary"
+            >Maaf akhi/ukhti, jadwal yang anda pilih tidak tersedia</span
+          >
         </div>
       </div>
 

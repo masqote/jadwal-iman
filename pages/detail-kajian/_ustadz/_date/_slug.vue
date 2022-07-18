@@ -1,11 +1,26 @@
 <template>
   <div>
-    <div class="h-32 bg-primary-light relative overflow-hidden z-10">
-      <div class="px-6 flex justify-center">
-        <h2 class="text-2xl font-bold text-white py-8">Detail Kajian</h2>
+    <div class="h-32 bg-primary-light">
+      <div class="px-6 flex flex-row py-8 items-center">
+        <div
+          @click="$router.go(-1)"
+          class="flex flex-row items-center justify-start px-3 space-x-1 py-1 -ml-4 cursor-pointer hover:opacity-80"
+        >
+          <img
+            src="~/assets/svg/back3.svg"
+            class="w-2 h-2 cursor-pointer"
+            alt=""
+          />
+          <span class="text-primary-font-light text-xs cursor-pointer"
+            >Back</span
+          >
+        </div>
+        <h2 class="-ml-6 w-full flex justify-center">
+          <span class="text-2xl font-bold text-white">Detail Kajian</span>
+        </h2>
       </div>
     </div>
-    <div class="pt-10 -mt-20 z-20 relative" v-if="data">
+    <div class="-mt-10 z-20 relative" v-if="data">
       <div class="bg-white mx-4 pb-10 pt-6 rounded-lg">
         <div class="px-4 space-y-2 divide-y divide-dashed">
           <div class="flex flex-row w-full pt-1">
