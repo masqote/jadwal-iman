@@ -108,7 +108,6 @@ export default {
       })
     },
     getJadwal(date = this.$today) {
-      // console.log(date)
       // if (!date) {
       //   date = 'hari-ini'
       // }

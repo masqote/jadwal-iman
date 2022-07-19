@@ -21,7 +21,7 @@
           >{{ abjad }}</span
         >
       </div>
-      <div class="grid grid-cols-3 gap-2">
+      <div class="grid grid-cols-2 gap-2">
         <div v-for="x in 40" :key="x">
           <CardUstadz name="Khalid Basalamah Hafidzahullah" class="mr-2" />
         </div>

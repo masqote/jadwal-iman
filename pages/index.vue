@@ -14,7 +14,7 @@
       >
         <div class="max-w-screen-sm p-4 flex flex-row bg-white" v-if="ustadz">
           <div v-for="x in ustadz" :key="x.id">
-            <CardUstadz :name="x.name" class="mr-2" />
+            <CardUstadz :name="x.name" class="mr-2 w-40" />
           </div>
         </div>
         <div class="max-w-screen-sm p-4 flex flex-row bg-white" v-else>
