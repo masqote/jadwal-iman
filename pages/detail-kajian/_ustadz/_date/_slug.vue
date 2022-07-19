@@ -117,7 +117,7 @@
       <div class="mt-2">
         <div v-if="jadwalLainnya" class="space-y-3">
           <div v-for="(y, index) in jadwalLainnya" :key="y.id">
-            <div v-if="index < 11 && y.slug != slug" class="space-y-1">
+            <div v-if="index < 5 && y.slug != slug" class="space-y-1">
               <CardJadwal
                 :jam="y.time_at"
                 :ustadz="y.ustadz_name"
@@ -210,10 +210,19 @@ export default {
         .then(({ data }) => {
           if (data.length > 1) {
             this.jadwalLainnya = data
+            this.shuffle(this.jadwalLainnya)
           }
 
           setTimeout(() => this.$nuxt.$loading.finish(), 500)
         })
+    },
+    shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        const temp = array[i]
+        this.$set(array, i, array[j])
+        this.$set(array, j, temp)
+      }
     },
   },
 }
