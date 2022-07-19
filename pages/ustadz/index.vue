@@ -22,8 +22,8 @@
         >
       </div>
       <div class="grid grid-cols-2 gap-2">
-        <div v-for="x in 40" :key="x">
-          <CardUstadz name="Khalid Basalamah Hafidzahullah" class="mr-2" />
+        <div v-for="x in ustadz" :key="x.id">
+          <CardUstadz :name="x.name" class="mr-2" />
         </div>
       </div>
     </div>
@@ -64,7 +64,14 @@ export default {
         'z',
       ],
       selectedAbjad: null,
+      ustadz: null,
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+    })
+    this.getUstadz(this.selectedAbjad)
   },
   methods: {
     selectAbjad(val) {
@@ -73,6 +80,22 @@ export default {
       } else {
         this.selectedAbjad = val
       }
+      this.getUstadz(this.selectedAbjad)
+    },
+    getUstadz(params) {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start()
+      })
+      this.$axios
+        .$get('get-ustadz', {
+          params: {
+            q: params,
+          },
+        })
+        .then(({ ustadz }) => {
+          this.ustadz = ustadz
+          setTimeout(() => this.$nuxt.$loading.finish(), 500)
+        })
     },
   },
 }

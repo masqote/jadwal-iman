@@ -28,7 +28,9 @@
               >Penceramah</span
             >
             <span class="w-1/12">:</span>
-            <span class="w-7/12 text-blue-500">{{ data.ustadz_name }}</span>
+            <span class="w-7/12 text-blue-500"
+              >{{ gelar }} {{ data.ustadz_name }}</span
+            >
           </div>
           <div class="flex flex-row w-full pt-1">
             <span class="w-4/12 text-lg font-bold text-primary-font-dark"
@@ -124,6 +126,7 @@
                 :date="y.date_at"
                 :slug="y.slug"
                 :province="y.province_name"
+                :gender="y.ustadz.gender"
               />
             </div>
           </div>
@@ -176,6 +179,9 @@ export default {
   computed: {
     jadwal() {
       return this.$dayjs(this.data.date_at).format('YYYY/MM/DD')
+    },
+    gelar() {
+      return this.data.ustadz.gender === 1 ? 'Ustadz' : 'Ustadzah'
     },
   },
   methods: {

@@ -29,7 +29,7 @@ export default {
 <style scoped>
 .loading-page {
   position: fixed;
-  top: 10;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;

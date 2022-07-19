@@ -50,6 +50,7 @@
             :date="y.date_at"
             :slug="y.slug"
             :province="y.province_name"
+            :gender="y.ustadz.gender"
           />
         </div>
         <div

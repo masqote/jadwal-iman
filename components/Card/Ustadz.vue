@@ -7,9 +7,9 @@
         class="flex flex-col w-full h-full bg-gradient-to-br from-primary via-primary-light to-primary-verylight items-center justify-center rounded-lg"
       >
         <span
-          class="px-1 py-2 text-center text-sm font-bold text-primary-font-light"
+          class="px-2 py-2 text-center text-sm font-bold text-primary-font-light"
         >
-          {{ name }}
+          {{ gelar }} {{ name }}
         </span>
       </div>
     </div>
@@ -27,6 +27,22 @@ export default {
     name: {
       type: String,
       default: null,
+    },
+    gender: {
+      type: Number,
+      default: null,
+    },
+  },
+
+  computed: {
+    gelar() {
+      if (this.gender === 1) {
+        return 'Ustadz'
+      } else if (this.gender === 2) {
+        return 'Ustadzah'
+      } else {
+        return null
+      }
     },
   },
 }
