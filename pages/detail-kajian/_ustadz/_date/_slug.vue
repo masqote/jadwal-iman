@@ -129,8 +129,8 @@
           </div>
         </div>
         <div v-else class="text-sm text-red-600">
-          Maaf, Jadwal tidak dapat ditemukan di wilayah anda, harap cari jadwal
-          lain.
+          Maaf, tidak ditemukan jadwal pada tanggal dan wilayah anda, harap cari
+          jadwal lain.
           <br />
           <br />
           <span class="text-primary-font-dark text-sm">Cari jadwal lain :</span>

@@ -6,9 +6,7 @@
       <div
         class="flex flex-col w-full h-full bg-gradient-to-br from-primary via-primary-light to-primary-verylight items-center justify-center rounded-lg"
       >
-        <span
-          class="p-2 text-center text-base font-bold text-primary-font-light"
-        >
+        <span class="p-2 text-center text-sm font-bold text-primary-font-light">
           {{ name }}
         </span>
       </div>
