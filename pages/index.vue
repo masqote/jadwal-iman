@@ -12,12 +12,12 @@
       <div
         class="bg-white -mt-10 rounded-lg mx-4 overflow-auto hide-scroll pt-5 drop-shadow-xl"
       >
-        <div class="max-w-screen-sm p-4 flex flex-row bg-white" v-if="ustadz">
+        <div v-if="ustadz" class="max-w-screen-sm p-4 flex flex-row bg-white">
           <div v-for="x in ustadz" :key="x.id">
             <CardUstadz :name="x.name" :gender="x.gender" class="mr-2 w-40" />
           </div>
         </div>
-        <div class="max-w-screen-sm p-4 flex flex-row bg-white" v-else>
+        <div v-else class="max-w-screen-sm p-4 flex flex-row bg-white">
           <div v-for="x in 7" :key="x">
             <CardUstadzPulse class="mr-2" />
           </div>
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="px-4 mt-4">
-      <div class="flex justify-between items-center" v-if="date">
+      <div v-if="date" class="flex justify-between items-center">
         <span class="text-lg text-primary"
           >Kajian Hari ini <br />
           <p class="text-sm">
@@ -40,7 +40,7 @@
           </div>
         </NuxtLink>
       </div>
-      <div class="flex justify-between items-center" v-else>
+      <div v-else class="flex justify-between items-center">
         <span class="text-lg text-primary">
           <br />
           <p class="text-sm"><br /></p>
@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="mt-1 px-4 pb-4">
-      <div class="space-y-3" v-if="jadwal">
+      <div v-if="jadwal" class="space-y-3">
         <div v-for="(y, index) in jadwal" :key="y.id">
           <CardJadwal
             v-if="index < 5"
@@ -67,7 +67,7 @@
           />
         </div>
       </div>
-      <div class="space-y-3" v-else>
+      <div v-else class="space-y-3">
         <div v-for="y in 5" :key="y">
           <CardJadwalPulse />
         </div>

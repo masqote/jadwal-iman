@@ -47,9 +47,6 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
   filters: {
     removeJam(val) {
       val = val.slice(0, -3)
@@ -90,6 +87,10 @@ export default {
       default: 1,
     },
   },
+  data() {
+    return {}
+  },
+
   computed: {
     ustadzName() {
       return this.ustadz.replace(/\s+/g, '-').toLowerCase()

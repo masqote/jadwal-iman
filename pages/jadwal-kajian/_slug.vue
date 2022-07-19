@@ -21,8 +21,8 @@
               :date="x.tanggal"
               :day="x.hari"
               class="mr-2"
-              @click.native="getJadwal(x.full)"
               :selected="x.full === selectedDay"
+              @click.native="getJadwal(x.full)"
             />
           </div>
         </div>
@@ -34,13 +34,13 @@
       </div>
     </div>
     <div class="p-4 pb-4">
-      <div class="flex justify-center text-red-600 mb-2" v-if="jadwal">
+      <div v-if="jadwal" class="flex justify-center text-red-600 mb-2">
         <span class="text-sm"
           >Tanggal Dipilih : {{ $dayjs(selectedDay).format('dddd') | ahad }},
           {{ $dayjs(selectedDay).format('DD MMMM YYYY') }}
         </span>
       </div>
-      <div class="space-y-3" v-if="jadwal">
+      <div v-if="jadwal" class="space-y-3">
         <div v-for="y in jadwal" :key="y.id">
           <CardJadwal
             :jam="y.time_at"
@@ -54,8 +54,8 @@
           />
         </div>
         <div
-          class="flex justify-center items-center flex-col"
           v-if="jadwal.length <= 0"
+          class="flex justify-center items-center flex-col"
         >
           <img src="~/assets/img/not-found.png" class="w-56 h-56" alt="" />
           <span class="text-sm text-primary"
@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <div class="space-y-3" v-else>
+      <div v-else class="space-y-3">
         <div v-for="y in 5" :key="y">
           <CardJadwalPulse />
         </div>
@@ -76,14 +76,6 @@
 <script>
 export default {
   name: 'JadwalKajian',
-  data() {
-    return {
-      date: null,
-      jadwal: null,
-      selectedDay: null,
-      slug: this.$route.params.slug,
-    }
-  },
   filters: {
     ahad(val) {
       const value = val.split(',')
@@ -93,6 +85,14 @@ export default {
         return value[0]
       }
     },
+  },
+  data() {
+    return {
+      date: null,
+      jadwal: null,
+      selectedDay: null,
+      slug: this.$route.params.slug,
+    }
   },
 
   mounted() {

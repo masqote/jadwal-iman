@@ -19,10 +19,6 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
-
   filters: {},
   props: {
     name: {
@@ -37,6 +33,9 @@ export default {
       type: String,
       default: 'text-sm',
     },
+  },
+  data() {
+    return {}
   },
 
   computed: {

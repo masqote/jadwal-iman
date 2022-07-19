@@ -3,8 +3,8 @@
     <div class="h-32 bg-primary-light">
       <div class="px-6 flex flex-row py-8 items-center">
         <div
-          @click="$router.go(-1)"
           class="flex flex-row items-center justify-start px-3 space-x-1 py-2 -ml-4 cursor-pointer hover:opacity-80"
+          @click="$router.go(-1)"
         >
           <img
             src="~/assets/svg/back3.svg"
@@ -20,7 +20,7 @@
         </h2>
       </div>
     </div>
-    <div class="-mt-10 z-20 relative" v-if="data">
+    <div v-if="data" class="-mt-10 z-20 relative">
       <div class="bg-white mx-4 pb-10 pt-6 rounded-lg">
         <div class="px-4 space-y-2 divide-y divide-dashed">
           <div class="flex flex-row w-full pt-1">
@@ -93,7 +93,7 @@
         </div>
       </div>
     </div>
-    <div class="mx-4 rounded-lg mt-6" v-if="data">
+    <div v-if="data" class="mx-4 rounded-lg mt-6">
       <div class="flex flex-row justify-between">
         <div class="flex flex-col">
           <span class="text-primary-font-dark text-base font-bold"
@@ -105,7 +105,7 @@
           >
         </div>
 
-        <div class="flex self-end" v-if="jadwalLainnya">
+        <div v-if="jadwalLainnya" class="flex self-end">
           <NuxtLink to="/jadwal-kajian">
             <div class="flex flex-row items-center mt-1 space-x-1">
               <img src="~/assets/svg/eye1.svg" class="h-4 w-4" alt="" />
@@ -153,13 +153,6 @@
 <script>
 export default {
   name: 'DetailKajian',
-  data() {
-    return {
-      slug: this.$route.params.slug,
-      data: null,
-      jadwalLainnya: null,
-    }
-  },
   filters: {
     ahad(val) {
       const value = val.split(',')
@@ -170,11 +163,12 @@ export default {
       }
     },
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-    })
-    this.getJadwal(this.slug)
+  data() {
+    return {
+      slug: this.$route.params.slug,
+      data: null,
+      jadwalLainnya: null,
+    }
   },
   computed: {
     jadwal() {
@@ -184,6 +178,14 @@ export default {
       return this.data.ustadz.gender === 1 ? 'Ustadz' : 'Ustadzah'
     },
   },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+    })
+    this.getJadwal(this.slug)
+  },
+
   methods: {
     getJadwal(val) {
       this.$axios

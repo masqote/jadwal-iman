@@ -16,14 +16,25 @@
           :class="{
             'bg-primary text-white shadow-lg': selectedAbjad === abjad,
           }"
-          @click="selectAbjad(abjad)"
           class="select-none uppercase cursor-pointer hover:opacity-60 hover:rounded-md rounded-md hover:shadow-lg py-2 px-2"
+          @click="selectAbjad(abjad)"
           >{{ abjad }}</span
         >
       </div>
-      <div class="grid grid-cols-2 gap-2">
+      <hr class="mb-4 border-dashed mx-1" />
+      <div
+        v-if="ustadz"
+        :class="{ 'grid grid-cols-2 gap-2': ustadz.length > 0 }"
+      >
         <div v-for="x in ustadz" :key="x.id">
           <CardUstadz :name="x.name" text="text-base" class="mr-2" />
+        </div>
+        <div v-if="ustadz.length <= 0" class="mx-1 w-full">
+          <span class="text-red-500"
+            >Nama berawalan huruf
+            <span class="text-primary uppercase">{{ selectedAbjad }}</span>
+            tidak ditemukan!</span
+          >
         </div>
       </div>
     </div>
