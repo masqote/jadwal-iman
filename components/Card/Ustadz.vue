@@ -7,7 +7,8 @@
         class="flex flex-col w-full h-full bg-gradient-to-br from-primary via-primary-light to-primary-verylight items-center justify-center rounded-lg"
       >
         <span
-          class="px-2 py-2 text-center text-sm font-bold text-primary-font-light"
+          class="px-2 py-2 text-center font-bold text-primary-font-light"
+          :class="[text]"
         >
           {{ gelar }} {{ name }}
         </span>
@@ -31,6 +32,10 @@ export default {
     gender: {
       type: Number,
       default: null,
+    },
+    text: {
+      type: String,
+      default: 'text-sm',
     },
   },
 

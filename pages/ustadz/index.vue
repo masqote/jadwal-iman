@@ -23,7 +23,7 @@
       </div>
       <div class="grid grid-cols-2 gap-2">
         <div v-for="x in ustadz" :key="x.id">
-          <CardUstadz :name="x.name" class="mr-2" />
+          <CardUstadz :name="x.name" text="text-base" class="mr-2" />
         </div>
       </div>
     </div>
