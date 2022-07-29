@@ -10,12 +10,40 @@
         <span class="px-2"> Cari Jadwal Ustadz Favorit Kalian</span>
       </div>
       <div
-        class="bg-white -mt-10 rounded-lg mx-4 overflow-auto hide-scroll pt-5 drop-shadow-xl"
+        class="h-full bg-white -mt-10 rounded-lg mx-4 overflow-auto hide-scroll pt-5 drop-shadow-xl"
       >
-        <div v-if="ustadz" class="max-w-screen-sm p-4 flex flex-row bg-white">
-          <div v-for="x in ustadz" :key="x.id">
-            <CardUstadz :name="x.name" :gender="x.gender" class="mr-2 w-40" />
+        <div
+          v-if="ustadz"
+          class="h-full max-w-screen-sm p-4 flex flex-row items-center bg-white"
+        >
+          <div v-for="(x, index) in ustadz" :key="x.id">
+            <NuxtLink
+              :to="{
+                name: 'ustadz-detail',
+                params: { detail: x.slug },
+              }"
+            >
+              <CardUstadz
+                v-if="index < 5"
+                :name="x.name"
+                :gender="x.gender"
+                class="mr-2 w-40"
+              />
+            </NuxtLink>
           </div>
+
+          <NuxtLink
+            :to="{
+              name: 'ustadz',
+            }"
+          >
+            <div
+              class="flex flex-row items-center text-primary cursor-pointer hover:opacity-70 space-x-2 pl-2 pr-5"
+            >
+              <span class="text-xs">Semua Ustadz</span>
+              <span class="text-xs">>></span>
+            </div>
+          </NuxtLink>
         </div>
         <div v-else class="max-w-screen-sm p-4 flex flex-row bg-white">
           <div v-for="x in 7" :key="x">

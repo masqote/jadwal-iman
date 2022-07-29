@@ -215,7 +215,7 @@ export default {
             this.shuffle(this.jadwalLainnya)
           }
 
-          setTimeout(() => this.$nuxt.$loading.finish(), 500)
+          this.$nuxt.$loading.finish()
         })
     },
     shuffle(array) {

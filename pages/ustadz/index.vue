@@ -27,7 +27,14 @@
         :class="{ 'grid grid-cols-2 gap-2': ustadz.length > 0 }"
       >
         <div v-for="x in ustadz" :key="x.id">
-          <CardUstadz :name="x.name" text="text-base" class="mr-2" />
+          <NuxtLink
+            :to="{
+              name: 'ustadz-detail',
+              params: { detail: x.slug },
+            }"
+          >
+            <CardUstadz :name="x.name" text="text-base" class="mr-2" />
+          </NuxtLink>
         </div>
         <div v-if="ustadz.length <= 0" class="mx-1 w-full">
           <span class="text-red-500"
@@ -105,7 +112,7 @@ export default {
         })
         .then(({ ustadz }) => {
           this.ustadz = ustadz
-          setTimeout(() => this.$nuxt.$loading.finish(), 500)
+          this.$nuxt.$loading.finish()
         })
     },
   },

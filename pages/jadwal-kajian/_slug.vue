@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="p-4 pb-4">
-      <div v-if="jadwal" class="flex justify-center text-red-600 mb-2">
+      <div v-if="jadwal" class="flex justify-center text-primary mb-2">
         <span class="text-sm"
           >Tanggal Dipilih : {{ $dayjs(selectedDay).format('dddd') | ahad }},
           {{ $dayjs(selectedDay).format('DD MMMM YYYY') }}
@@ -58,7 +58,7 @@
           class="flex justify-center items-center flex-col"
         >
           <img src="~/assets/img/not-found.png" class="w-56 h-56" alt="" />
-          <span class="text-sm text-primary"
+          <span class="text-sm text-red-600"
             >Maaf akhi/ukhti, jadwal yang anda pilih tidak tersedia</span
           >
         </div>
