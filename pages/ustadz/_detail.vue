@@ -1,15 +1,24 @@
 <template>
   <div>
-    <div class="h-44 bg-primary relative z-10">
+    <div class="h-52 bg-primary relative overflow-hidden z-10">
       <div
-        class="px-4 h-full flex flex-col justify-center items-center"
+        class="bg-white w-40 h-14 rounded-full flex items-center justify-center absolute shadow-lg -right-10 -top-2"
+      >
+        <div class="pr-8 text-primary font-bold pt-2">Detail</div>
+      </div>
+      <div
+        class="py-4 px-4 h-full flex space-y-3 flex-col items-center"
         v-if="ustadz"
       >
-        <h2>
-          <span class="text-sm font-bold text-white"
-            >{{ gelar }} {{ ustadz.name }}</span
-          >
-        </h2>
+        <div
+          class="w-24 h-24 overflow-hidden border border-white rounded-full shadow-lg"
+        >
+          <img
+            src="~/assets/img/ustadz/default.jpg"
+            class="w-full h-full object-cover"
+            alt=""
+          />
+        </div>
         <h2>
           <span class="text-sm font-bold text-white"
             >{{ gelar }} {{ ustadz.name }}</span
@@ -17,7 +26,9 @@
         </h2>
       </div>
     </div>
-    <div class="min-h-[70vh] bg-white rounded-t-[2rem] relative -mt-10 z-20">
+    <div
+      class="min-h-[70vh] bg-white rounded-t-[2rem] relative -mt-10 z-20 pb-10"
+    >
       <div class="py-4 text-center text-primary">Pilih Jadwal</div>
       <div
         v-if="date"
@@ -28,6 +39,8 @@
             :month="x.bulan"
             :date="x.tanggal"
             :day="x.hari"
+            :selected="x.full === selectedDay"
+            @click.native="getJadwal(x.full)"
             class="mr-2"
           />
         </div>
@@ -37,7 +50,42 @@
           <CardDatePulse class="mr-2" />
         </div>
       </div>
+      <div v-if="jadwal" class="flex justify-center text-primary mb-2">
+        <span class="text-sm"
+          >Tanggal Dipilih : {{ $dayjs(selectedDay).format('dddd') | ahad }},
+          {{ $dayjs(selectedDay).format('DD MMMM YYYY') }}
+        </span>
+      </div>
+      <div v-if="jadwal" class="space-y-3 px-3">
+        <div v-for="y in jadwal" :key="y.id">
+          <CardJadwal
+            :jam="y.time_at"
+            :ustadz="y.ustadz_name"
+            :title="y.title"
+            :address="y.address"
+            :date="y.date_at"
+            :slug="y.slug"
+            :province="y.province_name"
+            :gender="y.ustadz.gender"
+          />
+        </div>
+        <div
+          v-if="jadwal.length <= 0"
+          class="flex justify-center items-center flex-col"
+        >
+          <img src="~/assets/img/not-found.png" class="w-56 h-56" alt="" />
+          <span class="text-sm text-red-600"
+            >Maaf akhi/ukhti, jadwal yang anda pilih tidak tersedia</span
+          >
+        </div>
+      </div>
+      <div v-else class="space-y-3 px-3">
+        <div v-for="y in 5" :key="y">
+          <CardJadwalPulse />
+        </div>
+      </div>
     </div>
+    <div class="invisible mt-10">.</div>
   </div>
 </template>
 
@@ -47,11 +95,14 @@ export default {
     return {
       ustadz: null,
       date: null,
+      selectedDay: null,
+      jadwal: null,
     }
   },
   mounted() {
     this.getUstadz()
     this.getDate()
+    this.getJadwal()
   },
   methods: {
     getUstadz() {
@@ -68,8 +119,20 @@ export default {
     getDate() {
       this.$axios.$get('date-single').then(({ data }) => {
         this.date = data
-        console.log(this.date)
       })
+    },
+    getJadwal(date = this.$today) {
+      this.selectedDay = date
+      this.jadwal = null
+      this.$axios
+        .$get('get-jadwal', {
+          params: {
+            day: date,
+          },
+        })
+        .then(({ data }) => {
+          this.jadwal = data
+        })
     },
   },
   computed: {
