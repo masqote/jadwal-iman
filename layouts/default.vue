@@ -7,7 +7,7 @@
       <Nuxt
         class="mb-14"
         keep-alive
-        :keep-alive-props="{ include: ['JadwalKajian'] }"
+        :keep-alive-props="{ include: ['JadwalKajian', 'Ustadz'] }"
       />
     </div>
   </div>

@@ -51,6 +51,7 @@
 
 <script>
 export default {
+  name: 'Ustadz',
   data() {
     return {
       alphabet: [
@@ -110,8 +111,8 @@ export default {
             q: params,
           },
         })
-        .then(({ ustadz }) => {
-          this.ustadz = ustadz
+        .then(({ data }) => {
+          this.ustadz = data
           this.$nuxt.$loading.finish()
         })
     },

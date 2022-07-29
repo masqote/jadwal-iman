@@ -142,8 +142,8 @@ export default {
   },
   methods: {
     getUstadz() {
-      this.$axios.$get('get-ustadz').then(({ ustadz }) => {
-        this.ustadz = ustadz
+      this.$axios.$get('get-ustadz').then(({ data }) => {
+        this.ustadz = data
       })
     },
     getDate() {
