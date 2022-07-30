@@ -28,9 +28,17 @@
               >Penceramah</span
             >
             <span class="w-1/12">:</span>
-            <span class="w-7/12 text-blue-500"
-              >{{ gelar }} {{ data.ustadz_name }}</span
+            <NuxtLink
+              :to="{
+                name: 'ustadz-detail',
+                params: { detail: data.ustadz.slug },
+              }"
             >
+              <span
+                class="w-7/12 underline underline-offset-8 cursor-pointer text-blue-500"
+                >{{ gelar }} {{ data.ustadz_name }}</span
+              >
+            </NuxtLink>
           </div>
           <div class="flex flex-row w-full pt-1">
             <span class="w-4/12 text-lg font-bold text-primary-font-dark"

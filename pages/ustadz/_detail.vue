@@ -29,10 +29,10 @@
     <div
       class="min-h-[70vh] bg-white rounded-t-[2rem] relative -mt-10 z-20 pb-10"
     >
-      <div class="py-4 text-center text-primary">Pilih Jadwal</div>
+      <div class="pt-4 text-center text-primary">Pilih Jadwal</div>
       <div
         v-if="date"
-        class="flex flex-row overflow-auto hide-scroll px-4 pb-10"
+        class="flex py-6 overflow-hidden hide-scroll flex-row px-4 pb-10"
       >
         <div v-for="x in date" :key="x.full">
           <CardDate
@@ -45,7 +45,10 @@
           />
         </div>
       </div>
-      <div v-else class="flex flex-row overflow-auto hide-scroll px-4 pb-10">
+      <div
+        v-else
+        class="flex py-6 flex-row overflow-auto hide-scroll px-4 pb-10"
+      >
         <div v-for="x in 8" :key="x">
           <CardDatePulse class="mr-2" />
         </div>
@@ -57,7 +60,7 @@
         </span>
       </div>
       <div v-if="jadwal" class="space-y-3 px-3">
-        <div v-for="y in jadwal" :key="y.id">
+        <div v-for="y in jadwal.data" :key="y.id">
           <CardJadwal
             :jam="y.time_at"
             :ustadz="y.ustadz_name"
@@ -70,12 +73,14 @@
           />
         </div>
         <div
-          v-if="jadwal.length <= 0"
+          v-if="!jadwal.data"
           class="flex justify-center items-center flex-col"
         >
           <img src="~/assets/img/not-found.png" class="w-56 h-56" alt="" />
-          <span class="text-sm text-red-600"
-            >Maaf akhi/ukhti, jadwal yang anda pilih tidak tersedia</span
+          <span class="text-sm text-red-600 w-3/4 text-center"
+            >Maaf akhi/ukhti, jadwal
+            <span class="text-primary">{{ gelar }} {{ ustadz.name }}</span> yang
+            anda pilih tidak ditemukan, coba cari tanggal lain</span
           >
         </div>
       </div>
@@ -99,10 +104,20 @@ export default {
       jadwal: null,
     }
   },
+
+  filters: {
+    ahad(val) {
+      const value = val.split(',')
+      if (value[0] === 'Minggu') {
+        return 'Ahad'
+      } else {
+        return value[0]
+      }
+    },
+  },
   mounted() {
     this.getUstadz()
     this.getDate()
-    this.getJadwal()
   },
   methods: {
     getUstadz() {
@@ -114,6 +129,7 @@ export default {
         })
         .then(({ data }) => {
           this.ustadz = data
+          this.getJadwal()
         })
     },
     getDate() {
@@ -125,12 +141,13 @@ export default {
       this.selectedDay = date
       this.jadwal = null
       this.$axios
-        .$get('get-jadwal', {
+        .$get('get-jadwal-ustadz', {
           params: {
             day: date,
+            id: this.ustadz.id,
           },
         })
-        .then(({ data }) => {
+        .then((data) => {
           this.jadwal = data
         })
     },

@@ -2,7 +2,7 @@
   <div
     @mouseenter="bounce = true"
     @mouseleave="bounce = false"
-    class="shadow-xl flex justify-center rounded-lg w-28 h-32 border bg-primary cursor-pointer"
+    class="shadow-xl flex justify-center rounded-lg w-28 h-32 bg-primary cursor-pointer"
     :class="{ 'transform scale-105': selected }"
   >
     <div class="flex w-full flex-col items-center overflow-visible">

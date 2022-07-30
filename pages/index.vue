@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="h-52 bg-primary">
-      <img src="~/assets/img/idul-adha.jpeg" class="h-full w-full" alt="" />
+      <img
+        src="~/assets/img/tahun_baru_islam.jpg"
+        class="h-full w-full object-cover object-center"
+        alt=""
+      />
     </div>
     <div class="relative">
       <div
@@ -10,7 +14,7 @@
         <span class="px-2"> Cari Jadwal Ustadz Favorit Kalian</span>
       </div>
       <div
-        class="h-full bg-white -mt-10 rounded-lg mx-4 overflow-auto hide-scroll pt-5 drop-shadow-xl"
+        class="h-full bg-white -mt-4 rounded-lg mx-4 overflow-auto hide-scroll pt-5 drop-shadow-xl"
       >
         <div
           v-if="ustadz"
