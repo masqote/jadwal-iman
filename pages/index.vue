@@ -11,7 +11,7 @@
       <div
         class="pt-2 left-1/2 transform w-full -translate-x-1/2 text-lg flex justify-center text-primary absolute -top-1 z-20"
       >
-        <span class="px-2"> Cari Jadwal Ustadz Favorit Kalian</span>
+        <span class="px-2">Cari Jadwal Ustadz Favorit</span>
       </div>
       <div
         class="h-full bg-white -mt-4 rounded-lg mx-4 overflow-auto hide-scroll pt-5 drop-shadow-xl"
@@ -146,7 +146,7 @@ export default {
   },
   methods: {
     getUstadz() {
-      this.$axios.$get('get-ustadz').then(({ data }) => {
+      this.$axios.$get('get-ustadz-favorit').then(({ data }) => {
         this.ustadz = data
       })
     },

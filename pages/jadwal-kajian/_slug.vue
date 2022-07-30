@@ -7,7 +7,7 @@
     </div>
     <div class="relative z-20">
       <div
-        class="p-1 left-1/2 transform -translate-x-1/2 text-lg flex justify-center text-primary absolute -top-1 z-20"
+        class="p-1 left-1/2 transform -translate-x-1/2 text-base flex justify-center text-primary absolute -top-1 z-20"
       >
         Pilih Tanggal Kajian
       </div>

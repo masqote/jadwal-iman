@@ -89,6 +89,37 @@
           <CardJadwalPulse />
         </div>
       </div>
+      <div class="mt-10 px-3">
+        <div class="flex justify-between">
+          <span class="text-sm text-primary">Ustadz Favorit Lainnya:</span>
+          <NuxtLink to="/ustadz">
+            <div class="flex flex-row items-center mt-1 space-x-1">
+              <img src="~/assets/svg/eye1.svg" class="h-4 w-4" alt="" />
+              <span class="text-xs text-primary">Lihat Semua</span>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+      <div
+        class="mx-3 flex flex-row hide-scroll py-2 overflow-auto"
+        v-if="ustadzFavorit"
+      >
+        <div v-for="(x, index) in ustadzFavorit" :key="x.id">
+          <NuxtLink
+            :to="{
+              name: 'ustadz-detail',
+              params: { detail: x.slug },
+            }"
+          >
+            <CardUstadz
+              v-if="index < 10 && x.slug !== $route.params.detail"
+              :name="x.name"
+              :gender="x.gender"
+              class="mr-2 w-40 select-none"
+            />
+          </NuxtLink>
+        </div>
+      </div>
     </div>
     <div class="invisible mt-10">.</div>
   </div>
@@ -99,6 +130,7 @@ export default {
   data() {
     return {
       ustadz: null,
+      ustadzFavorit: null,
       date: null,
       selectedDay: null,
       jadwal: null,
@@ -118,6 +150,7 @@ export default {
   mounted() {
     this.getUstadz()
     this.getDate()
+    this.getUstadzLainnya()
   },
   methods: {
     getUstadz() {
@@ -150,6 +183,11 @@ export default {
         .then((data) => {
           this.jadwal = data
         })
+    },
+    getUstadzLainnya() {
+      this.$axios.$get('get-ustadz-favorit').then(({ data }) => {
+        this.ustadzFavorit = data
+      })
     },
   },
   computed: {
