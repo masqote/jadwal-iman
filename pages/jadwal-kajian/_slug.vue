@@ -69,6 +69,7 @@
           <CardJadwalPulse />
         </div>
       </div>
+      <div class="invisible mt-6">.</div>
     </div>
   </div>
 </template>
