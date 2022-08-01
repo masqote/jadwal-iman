@@ -45,7 +45,10 @@
             </div>
           </NuxtLink>
         </div>
-        <div v-else class="max-w-screen-sm p-4 flex flex-row bg-white">
+        <div
+          v-else
+          class="h-full max-w-screen-sm p-4 flex flex-row items-center bg-white overflow-auto hide-scroll"
+        >
           <div v-for="x in 7" :key="x">
             <CardUstadzPulse class="mr-2" />
           </div>
