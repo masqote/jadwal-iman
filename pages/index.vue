@@ -8,17 +8,13 @@
       />
     </div>
     <div class="relative">
-      <div
-        class="pt-2 left-1/2 transform w-full -translate-x-1/2 text-lg flex justify-center text-primary absolute -top-1 z-20"
-      >
-        <span class="px-2">Cari Jadwal Ustadz Favorit</span>
-      </div>
-      <div
-        class="h-full bg-white -mt-4 rounded-lg mx-4 overflow-auto hide-scroll pt-5 drop-shadow-xl"
-      >
+      <div class="h-full bg-white -mt-4 rounded-lg mx-4 pt-2 drop-shadow-xl">
+        <div class="flex justify-center text-primary">
+          Jadwal Ustadz Favorit
+        </div>
         <div
           v-if="ustadz"
-          class="h-full max-w-screen-sm p-4 flex flex-row items-center bg-white"
+          class="h-full max-w-screen-sm p-4 flex flex-row items-center bg-white overflow-auto hide-scroll"
         >
           <div v-for="(x, index) in ustadz" :key="x.id">
             <NuxtLink
