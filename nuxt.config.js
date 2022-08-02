@@ -30,6 +30,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxt/image',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -40,7 +41,22 @@ export default {
     '@nuxtjs/pwa',
 
     '@nuxtjs/dayjs',
+
+    '@nuxt/image',
   ],
+
+  image: {
+    // The screen sizes predefined by `@nuxt/image`:
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+      '2xl': 1536,
+    },
+  },
 
   dayjs: {
     locales: ['en', 'id'],

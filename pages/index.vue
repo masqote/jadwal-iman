@@ -1,14 +1,15 @@
 <template>
   <div>
     <div class="h-52 bg-primary">
-      <img
-        src="~/assets/img/tahun_baru_islam.jpg"
+      <nuxt-img
+        src="/tahun_baru_islam.jpg"
         class="h-full w-full object-cover object-center"
         alt=""
+        sizes="sm:100vw"
       />
     </div>
     <div class="relative">
-      <div class="h-full bg-white -mt-4 rounded-lg mx-4 pt-2 drop-shadow-xl">
+      <div class="h-full bg-white -mt-3 rounded-lg mx-4 pt-2 drop-shadow-xl">
         <div class="flex justify-center text-primary">
           Jadwal Ustadz Favorit
         </div>
