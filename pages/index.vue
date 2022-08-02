@@ -117,7 +117,16 @@
       </div>
       <div class="space-y-2 mt-2">
         <div v-for="b in 5" :key="b">
-          <CardBerita :thumbnail="'https://source.unsplash.com/300x200?' + b" />
+          <NuxtLink
+            :to="{
+              name: 'berita-slug',
+              params: { slug: b },
+            }"
+          >
+            <CardBerita
+              :thumbnail="'https://source.unsplash.com/300x200?' + b"
+            />
+          </NuxtLink>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="shadow-lg border border-primary-font-light rounded flex flex-row h-28"
+      class="shadow-lg border border-primary-font-light rounded flex flex-row h-28 cursor-pointer hover:opacity-80"
     >
       <div class="w-4/12">
         <img

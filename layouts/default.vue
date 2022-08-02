@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="max-w-screen-sm min-h-screen mx-auto shadow-xl bg-primary-font-light"
+      class="max-w-[490px] min-h-screen mx-auto shadow-xl bg-primary-font-light"
     >
       <NavbarFrontend class="mt-14" />
       <Nuxt

@@ -5,7 +5,9 @@
       params: { ustadz: ustadzName, date: date, slug: slug },
     }"
   >
-    <div class="rounded-lg overflow-hidden shadow-lg cursor-pointer">
+    <div
+      class="rounded-lg overflow-hidden shadow-lg cursor-pointer hover:opacity-90"
+    >
       <div class="w-full flex flex-row h-24 items-center">
         <div
           class="w-2/12 h-full items-center flex bg-primary justify-center flex-col border-r"
