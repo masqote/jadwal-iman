@@ -131,8 +131,8 @@
                 data.ustadz_name +
                 ' - ' +
                 data.title +
-                ' di https://jadwaliman.id/ustadz/' +
-                data.ustadz.slug
+                'di https://jadwaliman.id' +
+                $nuxt.$route.path
               "
             >
               <span class="text-primary-font-light">Share</span></a
