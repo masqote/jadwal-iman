@@ -131,7 +131,8 @@
                 data.ustadz_name +
                 ' - ' +
                 data.title +
-                ' di Jadwaliman.id'
+                ' di https://jadwaliman.id/ustadz/' +
+                data.ustadz.slug
               "
             >
               <span class="text-primary-font-light">Share</span></a
