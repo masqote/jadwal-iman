@@ -15,5 +15,31 @@
 <script>
 export default {
   name: 'default',
+  head: {
+    title: 'Cari Jadwal Kajian',
+    titleTemplate: 'Jadwaliman | %s',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Cari jadwal kajian ustadz favorit kalian hanya dengan sentuhan',
+      },
+      {
+        hid: 'og:image',
+        name: 'og:image',
+        content:
+          'https://jadwaliman.id/_nuxt/img/jadwal_iman_primary.6ccf4fc.png',
+      },
+      {
+        hid: 'og:site_name',
+        name: 'og:site_name',
+        content: 'Jadwaliman',
+      },
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
 }
 </script>

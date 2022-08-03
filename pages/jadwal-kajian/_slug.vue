@@ -76,6 +76,43 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: 'Jadwal Kajian Hari Ini',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Lihat jadwal kajian ustadz favorit hari ini maupun hari lainnya, sesuaikan dengan jadwalmu',
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: 'Jadwal Kajian Hari Ini',
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content:
+            'https://jadwaliman.id/_nuxt/img/jadwal_iman_primary.6ccf4fc.png',
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content:
+            'Lihat jadwal kajian ustadz favorit hari ini maupun hari lainnya, sesuaikan dengan jadwalmu',
+        },
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: 'https://jadwaliman.id' + this.$nuxt.$route.path,
+        },
+      ],
+    }
+  },
   name: 'JadwalKajian',
   filters: {
     ahad(val) {

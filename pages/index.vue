@@ -136,6 +136,43 @@
 
 <script>
 export default {
+  head: {
+    title: 'Home',
+    titleTemplate: 'Jadwaliman | %s',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Cari jadwal kajian ustadz favorit kalian hanya dengan satu sentuhan',
+      },
+      {
+        hid: 'og:title',
+        name: 'og:title',
+        content: 'Jadwaliman',
+      },
+      {
+        hid: 'og:image',
+        name: 'og:image',
+        content:
+          'https://jadwaliman.id/_nuxt/img/jadwal_iman_primary.6ccf4fc.png',
+      },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        content:
+          'Temukan jadwal kajian ustadz favorit kalian hanya dengan satu sentuhan',
+      },
+      {
+        hid: 'og:url',
+        name: 'og:url',
+        content: 'https://jadwaliman.id/',
+      },
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
   name: 'IndexPage',
   data() {
     return {

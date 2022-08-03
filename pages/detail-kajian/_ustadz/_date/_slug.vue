@@ -2,8 +2,8 @@
   <div>
     <div class="h-32 bg-primary-light">
       <div class="px-6 flex flex-row py-8 items-center">
-        <div
-          class="flex flex-row items-center justify-start px-3 space-x-1 py-2 -ml-4 cursor-pointer hover:opacity-80"
+        <button
+          class="flex flex-row items-center justify-start px-3 space-x-1 py-2 -ml-4 cursor-pointer hover:opacity-80 select-none"
           @click="$router.go(-1)"
         >
           <img
@@ -14,41 +14,42 @@
           <span class="text-primary-font-light text-sm cursor-pointer"
             >Back</span
           >
-        </div>
+        </button>
         <h2 class="-ml-6 w-full flex justify-center">
           <span class="text-2xl font-bold text-white">Detail Kajian</span>
         </h2>
       </div>
     </div>
     <div v-if="data" class="-mt-10 z-20 relative">
-      <div class="bg-white mx-4 pb-10 pt-6 rounded-lg">
+      <div class="bg-white mx-3 pb-10 pt-6 rounded-lg">
         <div class="px-4 space-y-2 divide-y divide-dashed">
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-lg font-bold text-primary-font-dark"
+            <span class="w-4/12 text-base font-bold text-primary-font-dark"
               >Penceramah</span
             >
             <span class="w-1/12">:</span>
             <NuxtLink
+              class="w-7/12"
               :to="{
                 name: 'ustadz-detail',
                 params: { detail: data.ustadz.slug },
               }"
             >
               <span
-                class="w-7/12 underline underline-offset-8 cursor-pointer text-blue-500"
+                class="underline underline-offset-8 cursor-pointer text-blue-500"
                 >{{ gelar }} {{ data.ustadz_name }}</span
               >
             </NuxtLink>
           </div>
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-lg font-bold text-primary-font-dark"
+            <span class="w-4/12 text-base font-bold text-primary-font-dark"
               >Judul</span
             >
             <span class="w-1/12">:</span>
             <span class="w-7/12 text-primary">{{ data.title }} </span>
           </div>
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-lg font-bold text-primary-font-dark"
+            <span class="w-4/12 text-base font-bold text-primary-font-dark"
               >Tanggal</span
             >
             <span class="w-1/12">:</span>
@@ -58,7 +59,7 @@
             </span>
           </div>
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-lg font-bold text-primary-font-dark"
+            <span class="w-4/12 text-base font-bold text-primary-font-dark"
               >Pukul</span
             >
             <span class="w-1/12">:</span>
@@ -67,7 +68,7 @@
             </span>
           </div>
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-lg font-bold text-primary-font-dark"
+            <span class="w-4/12 text-base font-bold text-primary-font-dark"
               >Alamat</span
             >
             <span class="w-1/12">:</span>
@@ -75,20 +76,46 @@
               >{{ data.address }} - {{ data.province_name }}
             </span>
           </div>
+          <div class="flex flex-row w-full pt-1">
+            <span class="w-4/12 text-base font-bold text-primary-font-dark"
+              >Tipe Kajian</span
+            >
+            <span class="w-1/12">:</span>
+            <span class="w-7/12 text-primary">
+              {{ data.tipe_kajian ? 'Kajian Online' : 'Kajian Offline' }}
+            </span>
+          </div>
+          <!-- <div class="flex flex-row w-full pt-1">
+            <span class="w-4/12 text-base font-bold text-primary-font-dark"
+              >Deskripsi</span
+            >
+            <span class="w-1/12">:</span>
+            <span class="w-7/12 text-primary text-sm">
+              {{ data.deskripsi ? data.deskripsi : '-' }}
+            </span>
+          </div> -->
         </div>
         <div class="px-4 l">
           <div
+            v-if="!data.tipe_kajian"
             class="mt-10 w-full h-64 rounded-xl overflow-hidden bg-gray-200 drop-shadow-lg"
           >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.0749872704835!2d106.80148926591326!3d-6.243957666585031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1d21a55dd6b%3A0xa74c97e308112846!2sRengit%20Travel!5e0!3m2!1sen!2sid!4v1657784541492!5m2!1sen!2sid"
-              width="600"
-              height="450"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <span v-if="data.url_kajian" v-html="data.url_kajian"></span>
+            <span
+              v-else
+              class="flex items-center py-4 px-4 text-red-600 select-none"
+              >Lokasi tidak dapat ditampilkan! harap lihat alamat detail
+              diatas</span
+            >
+          </div>
+          <div v-else class="pt-10 flex flex-col">
+            <span>Link Kajian Online : </span>
+
+            <a :href="data.url_kajian" target="_blank"
+              ><span class="text-blue-500 underline cursor-pointer">{{
+                data.url_kajian
+              }}</span></a
+            >
           </div>
         </div>
         <div class="mx-4 mt-10 flex justify-end">
