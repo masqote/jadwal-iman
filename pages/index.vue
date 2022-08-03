@@ -151,7 +151,7 @@ export default {
       {
         hid: 'og:title',
         name: 'og:title',
-        content: 'Jadwaliman',
+        content: 'Jadwal Iman',
       },
       {
         hid: 'og:image',

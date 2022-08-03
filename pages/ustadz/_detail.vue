@@ -127,6 +127,61 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title:
+        'Jadwal ' +
+        this.metaWeb.gelar +
+        ' ' +
+        this.metaWeb.ustadz +
+        ' Hari Ini',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Jadwal kajian ' +
+            this.metaWeb.gelar +
+            ' ' +
+            this.metaWeb.ustadz +
+            ' hari ini dan hari lainnya, pilih jadwal yang kalian inginkan',
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content:
+            'Jadwal ' +
+            this.metaWeb.gelar +
+            ' ' +
+            this.metaWeb.ustadz +
+            ' Hari Ini',
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content:
+            'https://jadwaliman.id/_nuxt/img/jadwal_iman_primary.6ccf4fc.png',
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content:
+            'Jadwal kajian ' +
+            this.metaWeb.gelar +
+            ' ' +
+            this.metaWeb.ustadz +
+            ' hari ini dan hari lainnya, pilih jadwal yang kalian inginkan',
+        },
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: 'https://jadwaliman.id' + this.$nuxt.$route.path,
+        },
+      ],
+    }
+  },
   data() {
     return {
       ustadz: null,
@@ -134,6 +189,10 @@ export default {
       date: null,
       selectedDay: null,
       jadwal: null,
+      metaWeb: {
+        ustadz: null,
+        gelar: null,
+      },
     }
   },
 
@@ -162,6 +221,8 @@ export default {
         })
         .then(({ data }) => {
           this.ustadz = data
+          this.metaWeb.ustadz = data.name
+          this.metaWeb.gelar = this.gelar
           this.getJadwal()
         })
     },

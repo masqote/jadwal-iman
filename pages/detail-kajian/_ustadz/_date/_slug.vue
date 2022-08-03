@@ -120,10 +120,22 @@
         </div>
         <div class="mx-4 mt-10 flex justify-end">
           <button
-            class="px-4 py-2 rounded-lg text-primary drop-shadow-lg bg-primary text-sm flex flex-row items-center space-x-2"
+            class="px-4 py-2 rounded-lg drop-shadow-lg bg-primary-light text-sm flex flex-row items-center space-x-2"
           >
             <img src="~/assets/svg/whatsapp1.svg" class="w-4 h-4" alt="" />
-            <span class="text-primary-font-light">Share</span>
+            <a
+              :href="
+                'https://api.whatsapp.com/send/?text=Coba cek jadwal kajian ' +
+                gelar +
+                ' ' +
+                data.ustadz_name +
+                ' - ' +
+                data.title +
+                ' di Jadwaliman.id'
+              "
+            >
+              <span class="text-primary-font-light">Share</span></a
+            >
           </button>
         </div>
       </div>
@@ -187,6 +199,65 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title:
+        'Kajian ' +
+        this.metaWeb.gelar +
+        ' ' +
+        this.metaWeb.ustadz +
+        ' - ' +
+        this.metaWeb.title,
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Cek kajian ' +
+            this.metaWeb.gelar +
+            ' ' +
+            this.metaWeb.ustadz +
+            ' - ' +
+            this.metaWeb.title,
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content:
+            'Kajian ' +
+            this.metaWeb.gelar +
+            ' ' +
+            this.metaWeb.ustadz +
+            ' - ' +
+            this.metaWeb.title,
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content:
+            'https://jadwaliman.id/_nuxt/img/jadwal_iman_primary.6ccf4fc.png',
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content:
+            'Cek kajian ' +
+            this.metaWeb.gelar +
+            ' ' +
+            this.metaWeb.ustadz +
+            ' - ' +
+            this.metaWeb.title,
+        },
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: 'https://jadwaliman.id' + this.$nuxt.$route.path,
+        },
+      ],
+    }
+  },
   name: 'DetailKajian',
   filters: {
     ahad(val) {
@@ -202,6 +273,11 @@ export default {
     return {
       slug: this.$route.params.slug,
       data: null,
+      metaWeb: {
+        title: null,
+        ustadz: null,
+        gelar: null,
+      },
       jadwalLainnya: null,
     }
   },
@@ -213,7 +289,6 @@ export default {
       return this.data.ustadz.gender === 1 ? 'Ustadz' : 'Ustadzah'
     },
   },
-
   mounted() {
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
@@ -227,7 +302,9 @@ export default {
         .$get('/get-jadwal/' + val)
         .then(({ data }) => {
           this.data = data
-
+          this.metaWeb.title = data.title
+          this.metaWeb.ustadz = data.ustadz_name
+          this.metaWeb.gelar = this.gelar
           this.getJadwalLainnya(data.date_at, data.province_id)
         })
         .catch((err) => {

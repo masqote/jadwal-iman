@@ -51,6 +51,43 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: 'Cari Ustadz Favorit',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Pilih jadwal ustadz favorit anda dan temukan jadwal kajian di hari yang tepat',
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: 'Cari Ustadz Favorit',
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content:
+            'https://jadwaliman.id/_nuxt/img/jadwal_iman_primary.6ccf4fc.png',
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content:
+            'Pilih jadwal ustadz favorit anda dan temukan jadwal kajian di hari yang tepat',
+        },
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: 'https://jadwaliman.id' + this.$nuxt.$route.path,
+        },
+      ],
+    }
+  },
   name: 'Ustadz',
   data() {
     return {
