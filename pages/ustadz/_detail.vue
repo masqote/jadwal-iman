@@ -127,13 +127,24 @@
 
 <script>
 export default {
+  asyncData({ $axios, route }) {
+    return $axios
+      .$get('get-ustadz-detail', {
+        params: {
+          slug: route.params.detail,
+        },
+      })
+      .then((response) => {
+        const metaWeb = response.data
+        return { metaWeb }
+      })
+  },
   head() {
     return {
       title:
         'Jadwal ' +
-        this.metaWeb.gelar +
-        ' ' +
-        this.metaWeb.ustadz +
+        (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
+        this.metaWeb.name +
         ' Hari Ini',
       meta: [
         { charset: 'utf-8' },
@@ -143,9 +154,8 @@ export default {
           name: 'description',
           content:
             'Jadwal kajian ' +
-            this.metaWeb.gelar +
-            ' ' +
-            this.metaWeb.ustadz +
+            (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
+            this.metaWeb.name +
             ' hari ini dan hari lainnya, pilih jadwal yang kalian inginkan',
         },
         {
@@ -153,9 +163,8 @@ export default {
           name: 'og:title',
           content:
             'Jadwal ' +
-            this.metaWeb.gelar +
-            ' ' +
-            this.metaWeb.ustadz +
+            (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
+            this.metaWeb.name +
             ' Hari Ini',
         },
         {
@@ -169,9 +178,8 @@ export default {
           name: 'og:description',
           content:
             'Jadwal kajian ' +
-            this.metaWeb.gelar +
-            ' ' +
-            this.metaWeb.ustadz +
+            (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
+            this.metaWeb.name +
             ' hari ini dan hari lainnya, pilih jadwal yang kalian inginkan',
         },
         {
@@ -189,10 +197,6 @@ export default {
       date: null,
       selectedDay: null,
       jadwal: null,
-      metaWeb: {
-        ustadz: null,
-        gelar: null,
-      },
     }
   },
 
@@ -221,8 +225,6 @@ export default {
         })
         .then(({ data }) => {
           this.ustadz = data
-          this.metaWeb.ustadz = data.name
-          this.metaWeb.gelar = this.gelar
           this.getJadwal()
         })
     },
