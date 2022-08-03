@@ -44,7 +44,15 @@
             <span class="font-bold text-sm">Ustadz</span>
           </div>
         </NuxtLink>
-        <NuxtLink to="/berita" class="h-full grayscale text-primary-font-light">
+        <NuxtLink
+          to="/berita"
+          :class="{
+            'shadow-lg bg-primary-light drop-shadow-lg text-white grayscale-0 rounded-md':
+              bgParentBerita,
+            'text-primary-font-light': !bgParentBerita,
+          }"
+          class="h-full grayscale"
+        >
           <div
             class="hover:opacity-80 cursor-pointer rounded flex items-center justify-center h-full px-4 flex-col"
           >
@@ -70,6 +78,9 @@ export default {
       return (
         this.$route.name === 'ustadz' || this.$route.name === 'ustadz-detail'
       )
+    },
+    bgParentBerita() {
+      return this.$route.name === 'berita' || this.$route.name === 'berita-slug'
     },
   },
 }
