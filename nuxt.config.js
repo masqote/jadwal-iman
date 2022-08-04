@@ -50,6 +50,8 @@ export default {
     '@nuxt/image',
 
     '@nuxtjs/sitemap',
+
+    '@nuxtjs/robots',
   ],
 
   sitemap: {
