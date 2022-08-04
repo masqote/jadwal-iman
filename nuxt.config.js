@@ -2,6 +2,10 @@ export default {
   loading: '~/components/loading.vue',
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
+  server: {
+    port: 5000, // default: 3000
+    host: '127.0.0.1',
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
