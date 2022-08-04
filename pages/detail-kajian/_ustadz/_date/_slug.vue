@@ -200,13 +200,25 @@
 
 <script>
 export default {
+  asyncData({ $axios, route }) {
+    return $axios
+      .$get('/get-jadwal/' + route.params.slug)
+      .then(({ data }) => {
+        const metaWeb = data
+        console.log(metaWeb)
+        return { metaWeb }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  },
   head() {
     return {
       title:
         'Kajian ' +
-        this.metaWeb.gelar +
+        (this.metaWeb.ustadz.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
         ' ' +
-        this.metaWeb.ustadz +
+        this.metaWeb.ustadz_name +
         ' - ' +
         this.metaWeb.title,
       meta: [
@@ -217,9 +229,9 @@ export default {
           name: 'description',
           content:
             'Cek kajian ' +
-            this.metaWeb.gelar +
+            (this.metaWeb.ustadz.gender === 1 ? 'Ustadz' : ' Ustadzah') +
             ' ' +
-            this.metaWeb.ustadz +
+            this.metaWeb.ustadz_name +
             ' - ' +
             this.metaWeb.title,
         },
@@ -228,9 +240,9 @@ export default {
           name: 'og:title',
           content:
             'Kajian ' +
-            this.metaWeb.gelar +
+            (this.metaWeb.ustadz.gender === 1 ? 'Ustadz' : ' Ustadzah') +
             ' ' +
-            this.metaWeb.ustadz +
+            this.metaWeb.ustadz_name +
             ' - ' +
             this.metaWeb.title,
         },
@@ -245,9 +257,9 @@ export default {
           name: 'og:description',
           content:
             'Cek kajian ' +
-            this.metaWeb.gelar +
+            (this.metaWeb.ustadz.gender === 1 ? 'Ustadz' : ' Ustadzah') +
             ' ' +
-            this.metaWeb.ustadz +
+            this.metaWeb.ustadz_name +
             ' - ' +
             this.metaWeb.title,
         },
@@ -274,11 +286,7 @@ export default {
     return {
       slug: this.$route.params.slug,
       data: null,
-      metaWeb: {
-        title: null,
-        ustadz: null,
-        gelar: null,
-      },
+
       jadwalLainnya: null,
     }
   },
@@ -303,9 +311,7 @@ export default {
         .$get('/get-jadwal/' + val)
         .then(({ data }) => {
           this.data = data
-          this.metaWeb.title = data.title
-          this.metaWeb.ustadz = data.ustadz_name
-          this.metaWeb.gelar = this.gelar
+
           this.getJadwalLainnya(data.date_at, data.province_id)
         })
         .catch((err) => {
