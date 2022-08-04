@@ -54,7 +54,9 @@ export default {
 
   sitemap: {
     routes: async () => {
-      let { data } = await axios.get('http://192.168.2.74:8000/api/get-ustadz')
+      let { data } = await axios.get(
+        'https://api.medhypradana.my.id/api/get-ustadz'
+      )
       return data.data.map((v) => `/ustadz/${v.slug}`)
     },
   },
