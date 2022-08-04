@@ -16,6 +16,9 @@
 export default {
   name: 'default',
   head: {
+    htmlAttrs: {
+      lang: 'id',
+    },
     title: 'Cari Jadwal Kajian',
     titleTemplate: 'Jadwaliman | %s',
     meta: [
