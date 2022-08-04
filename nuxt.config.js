@@ -55,6 +55,7 @@ export default {
   ],
 
   sitemap: {
+    hostname: 'https://jadwaliman.id',
     routes: async () => {
       let { data } = await axios.get(
         'https://api.medhypradana.my.id/api/get-ustadz'
