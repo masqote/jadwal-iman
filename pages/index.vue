@@ -137,7 +137,8 @@
 <script>
 export default {
   head: {
-    title: 'Home',
+    title:
+      'Aplikasi pencarian jadwal ustadz dan event muslim hanya dengan satu sentuhan',
     titleTemplate: 'Jadwaliman | %s',
     meta: [
       { charset: 'utf-8' },
