@@ -131,7 +131,7 @@
                 data.ustadz_name +
                 ' - ' +
                 data.title +
-                'di https://jadwaliman.id' +
+                ' di https://jadwaliman.id' +
                 $nuxt.$route.path
               "
             >
