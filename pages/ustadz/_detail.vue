@@ -195,7 +195,7 @@ export default {
       ustadz: null,
       ustadzFavorit: null,
       date: null,
-      selectedDay: null,
+      selectedDay: this.$today,
       jadwal: null,
     }
   },
@@ -211,8 +211,8 @@ export default {
     },
   },
   mounted() {
-    this.getUstadz()
     this.getDate()
+    this.getUstadz()
     this.getUstadzLainnya()
   },
   methods: {
