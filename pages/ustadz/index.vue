@@ -2,7 +2,7 @@
   <div>
     <div class="h-32 bg-primary relative overflow-hidden">
       <div class="px-4">
-        <h2 class="text-2xl font-bold text-white py-8">Ustadz</h2>
+        <h1 class="text-2xl font-bold text-white py-8">Ustadz</h1>
       </div>
     </div>
     <div class="bg-white mx-4 -mt-10 relative min-h-screen rounded-lg px-4">

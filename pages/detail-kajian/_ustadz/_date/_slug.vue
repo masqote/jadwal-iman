@@ -15,18 +15,18 @@
             >Back</span
           >
         </button>
-        <h2 class="-ml-6 w-full flex justify-center">
+        <h1 class="-ml-6 w-full flex justify-center">
           <span class="text-2xl font-bold text-white">Detail Kajian</span>
-        </h2>
+        </h1>
       </div>
     </div>
     <div v-if="data" class="-mt-10 z-20 relative">
       <div class="bg-white mx-3 pb-10 pt-6 rounded-lg">
         <div class="px-4 space-y-2 divide-y divide-dashed">
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-base font-bold text-primary-font-dark"
-              >Penceramah</span
-            >
+            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
+              Penceramah
+            </h2>
             <span class="w-1/12">:</span>
             <NuxtLink
               class="w-7/12"
@@ -42,16 +42,16 @@
             </NuxtLink>
           </div>
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-base font-bold text-primary-font-dark"
-              >Judul</span
-            >
+            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
+              Judul
+            </h2>
             <span class="w-1/12">:</span>
             <span class="w-7/12 text-primary">{{ data.title }} </span>
           </div>
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-base font-bold text-primary-font-dark"
-              >Tanggal</span
-            >
+            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
+              Tanggal
+            </h2>
             <span class="w-1/12">:</span>
             <span class="w-7/12 text-primary"
               >{{ $dayjs(data.date_at).format('dddd') | ahad }},
@@ -59,27 +59,27 @@
             </span>
           </div>
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-base font-bold text-primary-font-dark"
-              >Pukul</span
-            >
+            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
+              Pukul
+            </h2>
             <span class="w-1/12">:</span>
             <span class="w-7/12 text-primary"
               >{{ data.time_at }} - Selesai
             </span>
           </div>
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-base font-bold text-primary-font-dark"
-              >Alamat</span
-            >
+            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
+              Alamat
+            </h2>
             <span class="w-1/12">:</span>
             <span class="w-7/12 text-primary"
               >{{ data.address }} - {{ data.province_name }}
             </span>
           </div>
           <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-base font-bold text-primary-font-dark"
-              >Tipe Kajian</span
-            >
+            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
+              Tipe Kajian
+            </h2>
             <span class="w-1/12">:</span>
             <span class="w-7/12 text-primary">
               {{ data.tipe_kajian ? 'Kajian Online' : 'Kajian Offline' }}
@@ -205,7 +205,6 @@ export default {
       .$get('/get-jadwal/' + route.params.slug)
       .then(({ data }) => {
         const metaWeb = data
-        console.log(metaWeb)
         return { metaWeb }
       })
       .catch((err) => {

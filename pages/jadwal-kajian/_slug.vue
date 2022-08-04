@@ -2,15 +2,15 @@
   <div>
     <div class="h-32 bg-primary relative overflow-hidden z-10">
       <div class="px-4">
-        <h2 class="text-2xl font-bold text-white py-8">Jadwal Kajian</h2>
+        <h1 class="text-2xl font-bold text-white py-8">Jadwal Kajian</h1>
       </div>
     </div>
     <div class="relative z-20">
-      <div
+      <h2
         class="p-1 left-1/2 transform -translate-x-1/2 text-base flex justify-center text-primary absolute -top-1 z-20"
       >
         Pilih Tanggal Kajian
-      </div>
+      </h2>
       <div
         class="bg-white -mt-10 rounded-lg mx-3 overflow-auto hide-scroll pt-5"
       >

@@ -19,17 +19,17 @@
             alt=""
           />
         </div>
-        <h2>
+        <h1>
           <span class="text-sm font-bold text-white"
             >{{ gelar }} {{ ustadz.name }}</span
           >
-        </h2>
+        </h1>
       </div>
     </div>
     <div
       class="min-h-[70vh] bg-white rounded-t-[2rem] relative -mt-10 z-20 pb-10"
     >
-      <div class="pt-4 text-center text-primary">Pilih Jadwal</div>
+      <h2 class="pt-4 text-center text-primary">Pilih Jadwal</h2>
       <div
         v-if="date"
         class="flex py-6 overflow-hidden hide-scroll flex-row px-4 pb-10"
