@@ -137,8 +137,7 @@
 <script>
 export default {
   head: {
-    title:
-      'Aplikasi pencarian jadwal ustadz dan event muslim hanya dengan satu sentuhan',
+    title: 'Aplikasi pencarian jadwal ustadz dan event muslim',
     titleTemplate: 'Jadwaliman | %s',
     meta: [
       { charset: 'utf-8' },
@@ -146,7 +145,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'Cari jadwal kajian ustadz favorit kalian hanya dengan satu sentuhan',
+          'Cari jadwal kajian ustadz favorit kalian dan event muslim di seluruh indonesia hanya dengan satu sentuhan',
       },
       {
         hid: 'og:title',

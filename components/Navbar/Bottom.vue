@@ -70,7 +70,7 @@ export default {
   computed: {
     bgParentJadwal() {
       return (
-        this.$route.name === 'jadwal-kajian-slug' ||
+        this.$route.name === 'jadwal-kajian' ||
         this.$route.name === 'detail-kajian-ustadz-date-slug'
       )
     },

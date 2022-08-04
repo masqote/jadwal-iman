@@ -1,3 +1,4 @@
+const axios = require('axios')
 export default {
   loading: '~/components/loading.vue',
   // Target: https://go.nuxtjs.dev/config-target
@@ -47,7 +48,16 @@ export default {
     '@nuxtjs/dayjs',
 
     '@nuxt/image',
+
+    '@nuxtjs/sitemap',
   ],
+
+  sitemap: {
+    routes: async () => {
+      let { data } = await axios.get('http://192.168.2.74:8000/api/get-ustadz')
+      return data.data.map((v) => `/ustadz/${v.slug}`)
+    },
+  },
 
   image: {
     // The screen sizes predefined by `@nuxt/image`:
