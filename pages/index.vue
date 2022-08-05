@@ -98,6 +98,9 @@
             :gender="y.ustadz.gender"
           />
         </div>
+        <div v-if="!jadwal.length > 0" class="text-sm text-red-600 py-3">
+          Maaf, untuk hari ini tidak ada jadwal, harap cek jadwal hari lainnya
+        </div>
       </div>
       <div v-else class="space-y-3">
         <div v-for="y in 5" :key="y">
