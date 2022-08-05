@@ -120,18 +120,13 @@
         </div>
         <div class="mx-4 mt-10 flex justify-end">
           <button
-            class="px-4 py-2 rounded-lg drop-shadow-lg bg-primary-light text-sm flex flex-row items-center space-x-2"
+            class="px-4 py-2 rounded-xl shadow-lg bg-primary-light text-sm flex flex-row items-center space-x-2 hover:opacity-80"
           >
             <img src="~/assets/svg/whatsapp1.svg" class="w-4 h-4" alt="" />
             <a
               :href="
-                'https://api.whatsapp.com/send/?text=Coba cek jadwal kajian ' +
-                gelar +
-                ' ' +
-                data.ustadz_name +
-                ' - ' +
-                data.title +
-                ' di https://jadwaliman.id' +
+                'https://api.whatsapp.com/send/?text=Yuk kita ke kajian ini' +
+                ' https://jadwaliman.id' +
                 $nuxt.$route.path
               "
             >
