@@ -108,7 +108,7 @@
         </div>
       </div>
     </div>
-    <div class="px-4 py-4 bg-white">
+    <!-- <div class="px-4 py-4 bg-white">
       <div class="flex justify-between items-center">
         <span class="text-lg text-primary">Berita Terbaru </span>
         <NuxtLink to="/berita">
@@ -132,7 +132,7 @@
           </NuxtLink>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="mt-4 text-primary-font-light">.</div>
   </div>
 </template>

@@ -55,9 +55,7 @@
               />
               <div class="absolute top-36 left-2 right-2 px-4 rounded-lg">
                 <h3 class="text-base text-white line-clamp-2 drop-shadow-xl">
-                  12 Jadwal kajian dilokasi anda asdsada asdasdsad asdasdas
-                  asdasdas dasdsadsadas adsadasdasdsad sadsada asdsadas
-                  asdasdsadasda
+                  Testing
                 </h3>
               </div>
             </div>
@@ -88,7 +86,7 @@
             />
             <div class="mb-10">
               <h3 class="text-sm px-3 pt-2 line-clamp-3">
-                Pengertian dan Jadwal ANBK 2022, Yuk cari tahu!
+                Testing, Yuk cari tahu!
               </h3>
             </div>
 

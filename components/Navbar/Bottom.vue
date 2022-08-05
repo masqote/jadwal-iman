@@ -44,7 +44,7 @@
             <span class="font-bold text-sm">Ustadz</span>
           </div>
         </NuxtLink>
-        <NuxtLink
+        <!-- <NuxtLink
           to="/berita"
           :class="{
             'shadow-lg bg-primary-light drop-shadow-lg text-white grayscale-0 rounded-md':
@@ -59,7 +59,7 @@
             <img src="~/assets/svg/news.svg" class="w-5 h-5" alt="" />
             <span class="font-bold text-sm">Berita</span>
           </div>
-        </NuxtLink>
+        </NuxtLink> -->
       </div>
     </div>
   </div>

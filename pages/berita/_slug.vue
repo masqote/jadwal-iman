@@ -30,19 +30,7 @@
         ></span
       >
       <hr class="mx-4" />
-      <p class="px-4 py-4 text-primary-font-dark">
-        Biasanya saat hendak salat 5 waktu, salat Tahajud atau Tarawih yang
-        memiliki jumlah rakaat yang banyak, bacaan surat pendek akan menjadi
-        pilihan. <br />
-        <br />
-        Juz Amma yang dikenal memiliki banyak pilihan bacaan surat pendek,
-        menjadi favorit banyak orang untuk dibaca saat salat.
-        <br />
-        <br />
-        Ini bisa dikenalkan untuk Si Kecil saat belajar menghafalkan Alquran.
-        Juga bisa dibaca pada saat-saat tertentu dengan tidak berkurangnya
-        pahala meski memiliki ayat yang sedikit.
-      </p>
+      <p class="px-4 py-4 text-primary-font-dark">Testing</p>
     </div>
   </div>
 </template>
