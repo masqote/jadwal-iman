@@ -144,8 +144,7 @@ export default {
       title:
         'Jadwal ' +
         (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
-        this.metaWeb.name +
-        ' Hari Ini',
+        this.metaWeb.name,
       meta: [
         { charset: 'utf-8' },
         {
@@ -163,8 +162,7 @@ export default {
           content:
             'Jadwal ' +
             (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
-            this.metaWeb.name +
-            ' Hari Ini',
+            this.metaWeb.name,
         },
         {
           hid: 'og:image',
