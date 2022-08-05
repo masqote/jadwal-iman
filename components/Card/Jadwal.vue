@@ -2,7 +2,7 @@
   <NuxtLink
     :to="{
       name: 'detail-kajian-ustadz-date-slug',
-      params: { ustadz: ustadzName, date: date, slug: slug },
+      params: { ustadz: ustadz, date: date, slug: slug },
     }"
   >
     <div
@@ -94,9 +94,6 @@ export default {
   },
 
   computed: {
-    ustadzName() {
-      return this.ustadz.replace(/\s+/g, '-').toLowerCase()
-    },
     gelar() {
       return this.gender === 1 ? 'Ustadz' : 'Ustadzah'
     },

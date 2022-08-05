@@ -89,7 +89,7 @@
           <CardJadwal
             v-if="index < 5"
             :jam="y.time_at"
-            :ustadz="y.ustadz_name"
+            :ustadz="y.ustadz.slug"
             :title="y.title"
             :address="y.address"
             :date="y.date_at"

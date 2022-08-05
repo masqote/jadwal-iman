@@ -63,7 +63,7 @@
         <div v-for="y in jadwal.data" :key="y.id">
           <CardJadwal
             :jam="y.time_at"
-            :ustadz="y.ustadz_name"
+            :ustadz="y.ustadz.slug"
             :title="y.title"
             :address="y.address"
             :date="y.date_at"
