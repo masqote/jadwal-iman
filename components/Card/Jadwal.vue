@@ -24,7 +24,7 @@
             <div class="h-full flex flex-row space-x-2 items-center">
               <img src="~/assets/svg/user.svg" class="h-4 w-4" alt="" />
               <span class="font-bold text-primary-font-dark line-clamp-1"
-                >{{ gelar }} {{ ustadz }}</span
+                >{{ gelar }} {{ ustadzName }}</span
               >
             </div>
             <div class="h-full flex flex-row space-x-2 items-center">
@@ -88,11 +88,17 @@ export default {
       type: Number,
       default: 1,
     },
+    ustadzName: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {}
   },
-
+  // ustadzName() {
+  //     return this.ustadz.replace(/\s+/g, '-').toLowerCase()
+  //   },
   computed: {
     gelar() {
       return this.gender === 1 ? 'Ustadz' : 'Ustadzah'
