@@ -23,7 +23,7 @@
           <div class="flex flex-col h-full px-2">
             <div class="h-full flex flex-row space-x-2 items-center">
               <img src="~/assets/svg/user.svg" class="h-4 w-4" alt="" />
-              <span class="font-bold text-primary-font-dark"
+              <span class="font-bold text-primary-font-dark line-clamp-1"
                 >{{ gelar }} {{ ustadz }}</span
               >
             </div>
