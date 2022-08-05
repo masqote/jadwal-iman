@@ -137,7 +137,7 @@
 <script>
 export default {
   head: {
-    title: 'Aplikasi pencarian jadwal ustadz dan event muslim',
+    title: 'Aplikasi Pencarian Jadwal Ustadz dan Event Muslim',
     titleTemplate: 'Jadwaliman | %s',
     meta: [
       { charset: 'utf-8' },
@@ -150,7 +150,8 @@ export default {
       {
         hid: 'og:title',
         name: 'og:title',
-        content: 'Jadwal Iman',
+        content:
+          'Jadwaliman | Aplikasi Pencarian Jadwal Ustadz dan Event Muslim',
       },
       {
         hid: 'og:image',
