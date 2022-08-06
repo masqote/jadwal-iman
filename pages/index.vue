@@ -92,7 +92,7 @@
             :ustadz="y.ustadz.slug"
             :ustadzName="y.ustadz_name"
             :title="y.title"
-            :address="y.address"
+            :address="y.address.name"
             :date="y.date_at"
             :slug="y.slug"
             :province="y.province_name"

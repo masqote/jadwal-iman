@@ -2,7 +2,7 @@
   <div>
     <div class="h-32 bg-primary-light">
       <div class="px-6 flex flex-row py-8 items-center">
-        <button
+        <!-- <button
           class="flex flex-row items-center justify-start px-3 space-x-1 py-2 -ml-4 cursor-pointer hover:opacity-80 select-none"
           @click="$router.go(-1)"
         >
@@ -14,125 +14,172 @@
           <span class="text-primary-font-light text-sm cursor-pointer"
             >Back</span
           >
-        </button>
-        <h1 class="-ml-6 w-full flex justify-center">
+        </button> -->
+        <h1 class="w-full flex justify-center">
           <span class="text-2xl font-bold text-white">Detail Kajian</span>
         </h1>
       </div>
     </div>
     <div v-if="data" class="-mt-10 z-20 relative">
-      <div class="bg-white mx-3 pb-10 pt-6 rounded-lg">
-        <div class="px-4 space-y-2 divide-y divide-dashed">
-          <div class="flex flex-row w-full pt-1">
-            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
-              Penceramah
-            </h2>
-            <span class="w-1/12">:</span>
+      <div class="bg-white mx-3 pb-10 pt-2 rounded-lg">
+        <div class="divide-y px-4 divide-dashed">
+          <div class="py-3">
+            <div>
+              <h1 class="text-xl font-bold">{{ data.title }}</h1>
+            </div>
+          </div>
+          <div class="py-3 cursor-pointer hover:opacity-70">
             <NuxtLink
-              class="w-7/12"
               :to="{
                 name: 'ustadz-detail',
-                params: { detail: data.ustadz.slug },
+                params: {
+                  detail: data.ustadz.slug,
+                },
               }"
             >
-              <span
-                class="underline underline-offset-8 cursor-pointer text-blue-500"
-                >{{ gelar }} {{ data.ustadz_name }}</span
-              >
+              <div class="flex flex-row items-center w-full">
+                <div class="flex flex-row space-x-3 w-11/12">
+                  <img
+                    src="~/assets/svg/user1.svg"
+                    class="h-5 w-5 mt-1"
+                    alt=""
+                  />
+                  <h2 class="px-2">{{ gelar }} {{ data.ustadz_name }}</h2>
+                </div>
+                <div class="flex w-1/12 justify-end">
+                  <img
+                    src="~/assets/svg/right-arrow.svg"
+                    class="h-3 w-3"
+                    alt=""
+                  />
+                </div>
+              </div>
             </NuxtLink>
           </div>
-          <div class="flex flex-row w-full pt-1">
-            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
-              Judul
-            </h2>
-            <span class="w-1/12">:</span>
-            <span class="w-7/12 text-primary">{{ data.title }} </span>
+          <div class="py-3 cursor-pointer hover:opacity-70">
+            <div class="flex flex-row items-center w-full">
+              <div class="flex flex-row space-x-3 w-11/12">
+                <img src="~/assets/svg/home2.svg" class="h-5 w-5 mt-1" alt="" />
+                <h2 class="px-2">{{ data.address.name }}</h2>
+              </div>
+              <div class="flex w-1/12 justify-end">
+                <img
+                  src="~/assets/svg/right-arrow.svg"
+                  class="h-3 w-3"
+                  alt=""
+                />
+              </div>
+            </div>
           </div>
-          <div class="flex flex-row w-full pt-1">
-            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
-              Tanggal
-            </h2>
-            <span class="w-1/12">:</span>
-            <span class="w-7/12 text-primary"
-              >{{ $dayjs(data.date_at).format('dddd') | ahad }},
-              {{ $dayjs(data.date_at).format('DD MMMM YYYY') }}
-            </span>
+          <div class="py-3">
+            <div class="flex flex-row items-center w-full">
+              <div class="flex flex-row space-x-3">
+                <img
+                  src="~/assets/svg/location2.svg"
+                  class="h-5 w-5 mt-1"
+                  alt=""
+                />
+                <span class="px-2">{{ data.address.alamat }}</span>
+              </div>
+            </div>
           </div>
-          <div class="flex flex-row w-full pt-1">
-            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
-              Pukul
-            </h2>
-            <span class="w-1/12">:</span>
-            <span class="w-7/12 text-primary"
-              >{{ data.time_at }} - Selesai
-            </span>
+          <div class="py-3">
+            <div class="flex flex-row items-center w-full">
+              <div class="flex flex-row space-x-3">
+                <img
+                  src="~/assets/svg/calendar1.svg"
+                  class="h-5 w-5 mt-1"
+                  alt=""
+                />
+                <span class="px-2"
+                  >{{ $dayjs(data.date_at).format('dddd') | ahad }},
+                  {{ $dayjs(data.date_at).format('DD MMMM YYYY') }}
+                </span>
+              </div>
+            </div>
           </div>
-          <div class="flex flex-row w-full pt-1">
-            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
-              Alamat
-            </h2>
-            <span class="w-1/12">:</span>
-            <span class="w-7/12 text-primary"
-              >{{ data.address }} - {{ data.province_name }}
-            </span>
+          <div class="py-3">
+            <div class="flex flex-row items-center w-full">
+              <div class="flex flex-row space-x-3">
+                <img
+                  src="~/assets/svg/clock1.svg"
+                  class="h-5 w-5 mt-1"
+                  alt=""
+                />
+                <span class="px-2">{{ data.time_at }} - Selesai </span>
+              </div>
+            </div>
           </div>
-          <div class="flex flex-row w-full pt-1">
-            <h2 class="w-4/12 text-base font-bold text-primary-font-dark">
-              Tipe Kajian
-            </h2>
-            <span class="w-1/12">:</span>
-            <span class="w-7/12 text-primary">
-              {{ data.tipe_kajian ? 'Kajian Online' : 'Kajian Offline' }}
-            </span>
+          <div class="py-3">
+            <div class="flex flex-row items-center w-full">
+              <div class="flex flex-row space-x-3">
+                <img
+                  src="~/assets/svg/kajian.svg"
+                  class="h-5 w-5 mt-1"
+                  alt=""
+                />
+                <span class="px-2 font-bold"
+                  >{{ data.tipe_kajian ? 'Kajian Online' : 'Kajian Offline' }}
+                </span>
+              </div>
+            </div>
           </div>
-          <!-- <div class="flex flex-row w-full pt-1">
-            <span class="w-4/12 text-base font-bold text-primary-font-dark"
-              >Deskripsi</span
-            >
-            <span class="w-1/12">:</span>
-            <span class="w-7/12 text-primary text-sm">
-              {{ data.deskripsi ? data.deskripsi : '-' }}
-            </span>
-          </div> -->
-        </div>
-        <div class="px-4 l">
-          <div
-            v-if="!data.tipe_kajian"
-            class="mt-10 w-full h-64 rounded-xl overflow-hidden bg-gray-200 drop-shadow-lg"
-          >
-            <span v-if="data.url_kajian" v-html="data.url_kajian"></span>
-            <span
-              v-else
-              class="flex items-center py-4 px-4 text-red-600 select-none"
-              >Lokasi tidak dapat ditampilkan! harap lihat alamat detail
-              diatas</span
-            >
+          <div class="py-3">
+            <div class="flex flex-row items-center w-full">
+              <div class="flex flex-row space-x-3">
+                <img
+                  src="~/assets/svg/description.svg"
+                  class="h-5 w-5 mt-1"
+                  alt=""
+                />
+                <span class="px-2"
+                  >{{ data.deskripsi ? data.deskripsi : '-' }}
+                </span>
+              </div>
+            </div>
           </div>
-          <div v-else class="pt-10 flex flex-col">
-            <span>Link Kajian Online : </span>
 
-            <a :href="data.url_kajian" target="_blank"
-              ><span class="text-blue-500 underline cursor-pointer">{{
-                data.url_kajian
-              }}</span></a
+          <div class="py-4" v-if="!data.tipe_kajian">
+            <div class="font-bold">Peta Lokasi :</div>
+            <div
+              class="mt-6 w-full h-64 rounded-xl overflow-hidden bg-gray-200 drop-shadow-lg"
             >
+              <span v-if="data.address.maps" v-html="data.address.maps"></span>
+              <span
+                v-else
+                class="flex items-center py-4 px-4 text-red-600 select-none"
+                >Lokasi tidak dapat ditampilkan! harap lihat alamat detail
+                diatas</span
+              >
+            </div>
           </div>
-        </div>
-        <div class="mx-4 mt-10 flex justify-end">
-          <button
-            class="px-4 py-2 rounded-xl shadow-lg bg-primary-light text-sm flex flex-row items-center space-x-2 hover:opacity-80"
-          >
-            <img src="~/assets/svg/whatsapp1.svg" class="w-4 h-4" alt="" />
-            <a
-              :href="
-                'https://api.whatsapp.com/send/?text=Yuk kita ke kajian ini' +
-                ' https://jadwaliman.id' +
-                $nuxt.$route.path
-              "
+          <div class="py-4" v-else>
+            <div class="flex flex-col">
+              <span>Link Kajian Online : </span>
+
+              <a :href="data.url_kajian" target="_blank"
+                ><span class="text-blue-500 underline cursor-pointer">{{
+                  data.url_kajian
+                }}</span></a
+              >
+            </div>
+          </div>
+          <div class="pt-4 flex justify-end">
+            <button
+              class="px-4 py-2 rounded-xl shadow-lg bg-primary-light text-sm flex flex-row items-center space-x-2 hover:opacity-80"
             >
-              <span class="text-primary-font-light">Share</span></a
-            >
-          </button>
+              <img src="~/assets/svg/whatsapp1.svg" class="w-4 h-4" alt="" />
+              <a
+                :href="
+                  'https://api.whatsapp.com/send/?text=Yuk kita ke kajian ini' +
+                  ' https://jadwaliman.id' +
+                  $nuxt.$route.path
+                "
+              >
+                <span class="text-primary-font-light">Bagikan</span></a
+              >
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -166,7 +213,7 @@
                 :ustadz="y.ustadz.slug"
                 :ustadzName="y.ustadz_name"
                 :title="y.title"
-                :address="y.address"
+                :address="y.address.name"
                 :date="y.date_at"
                 :slug="y.slug"
                 :province="y.province_name"
