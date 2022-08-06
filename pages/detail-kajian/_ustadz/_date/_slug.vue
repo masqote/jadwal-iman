@@ -106,7 +106,15 @@
                   class="h-5 w-5 mt-1"
                   alt=""
                 />
-                <span class="px-2">{{ data.time_at }} - Selesai </span>
+                <div class="flex flex-row items-center px-2">
+                  <span
+                    v-if="data.waktu"
+                    class="p-1 px-2 bg-primary rounded-lg text-sm text-primary-font-light"
+                  >
+                    {{ data.waktu.name }}
+                  </span>
+                  <span class="px-2">{{ data.time_at }} - Selesai </span>
+                </div>
               </div>
             </div>
           </div>
