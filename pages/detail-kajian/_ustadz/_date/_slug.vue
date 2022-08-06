@@ -132,9 +132,12 @@
                   class="h-5 w-5 mt-1"
                   alt=""
                 />
-                <span class="px-2"
-                  >{{ data.deskripsi ? data.deskripsi : '-' }}
-                </span>
+                <span
+                  class="px-2"
+                  v-html="data.deskripsi"
+                  v-if="data.deskripsi"
+                ></span>
+                <span class="px-2" v-else>-</span>
               </div>
             </div>
           </div>

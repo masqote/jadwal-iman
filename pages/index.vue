@@ -214,7 +214,8 @@ export default {
           },
         })
         .then(({ data }) => {
-          const filteredData = data.filter((x) => x.time_at > this.$time)
+          const timeNow = this.$dayjs(new Date()).format('HH:mm:ss')
+          const filteredData = data.filter((x) => x.time_at > timeNow)
           if (filteredData.length > 0) {
             this.jadwal = filteredData
           } else {
