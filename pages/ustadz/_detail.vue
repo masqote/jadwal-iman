@@ -66,10 +66,10 @@
             :ustadz="y.ustadz.slug"
             :ustadzName="y.ustadz_name"
             :title="y.title"
-            :address="y.address.name"
+            :address="y.address ? y.address.name : 'Kajian Online'"
             :date="y.date_at"
             :slug="y.slug"
-            :province="y.province_name"
+            :province="y.province_name ?? ''"
             :gender="y.ustadz.gender"
           />
         </div>

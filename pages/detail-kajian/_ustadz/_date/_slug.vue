@@ -56,11 +56,13 @@
               </div>
             </NuxtLink>
           </div>
-          <div class="py-3 cursor-pointer hover:opacity-70">
+          <div class="py-3 cursor-pointer hover:opacity-70" v-if="data.address">
             <div class="flex flex-row items-center w-full">
               <div class="flex flex-row space-x-3 w-11/12">
                 <img src="~/assets/svg/home2.svg" class="h-5 w-5 mt-1" alt="" />
-                <h2 class="px-2">{{ data.address.name }}</h2>
+                <h2 class="px-2">
+                  {{ data.address.name }}
+                </h2>
               </div>
               <div class="flex w-1/12 justify-end">
                 <img
@@ -71,7 +73,7 @@
               </div>
             </div>
           </div>
-          <div class="py-3">
+          <div class="py-3" v-if="data.address">
             <div class="flex flex-row items-center w-full">
               <div class="flex flex-row space-x-3">
                 <img
@@ -224,10 +226,10 @@
                 :ustadz="y.ustadz.slug"
                 :ustadzName="y.ustadz_name"
                 :title="y.title"
-                :address="y.address.name"
+                :address="y.address ? y.address.name : 'Kajian Online'"
                 :date="y.date_at"
                 :slug="y.slug"
-                :province="y.province_name"
+                :province="y.province_name ?? ''"
                 :gender="y.ustadz.gender"
               />
             </div>
