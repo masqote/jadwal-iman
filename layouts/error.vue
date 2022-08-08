@@ -3,12 +3,25 @@
     <body class="bg-purple min-h-screen">
       <div class="stars">
         <div class="central-body flex items-center flex-col">
-          <img
-            class="image-404"
-            src="http://salehriaz.com/404Page/img/404.svg"
-            width="300px"
-          />
-          <a href="/" class="btn-go-home">GO BACK HOME </a>
+          <div v-if="error.statusCode === 404">
+            <img
+              class="image-404"
+              src="http://salehriaz.com/404Page/img/404.svg"
+              width="300px"
+            />
+          </div>
+          <div v-else class="flex flex-col">
+            <span class="text-4xl text-white font-bold">Server Error</span>
+            <span class="text-7xl text-white font-bold">500</span>
+            <span class="text-white"
+              >Harap tunggu beberapa saat lagi, saat ini server sedang
+              bermasalah</span
+            >
+          </div>
+          <a href="/" class="btn-go-home" v-if="error.statusCode === 404"
+            >GO BACK HOME
+          </a>
+          <a href="/" class="btn-go-home" v-else>Coba Lagi</a>
         </div>
         <div class="objects">
           <img
