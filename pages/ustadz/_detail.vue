@@ -128,7 +128,7 @@
 
 <script>
 export default {
-  asyncData({ $axios, route }) {
+  asyncData({ $axios, route, error }) {
     return $axios
       .$get('get-ustadz-detail', {
         params: {
@@ -139,13 +139,18 @@ export default {
         const metaWeb = response.data
         return { metaWeb }
       })
+      .catch(({ response }) => {
+        if (response.status === 400) {
+          error({ statusCode: 404, message: 'Post not found' })
+        }
+      })
   },
   head() {
     return {
       title:
         'Jadwal ' +
-        (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
-        this.metaWeb.name,
+        (this.metaWeb && this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
+        (this.metaWeb && this.metaWeb.name),
       meta: [
         { charset: 'utf-8' },
         {
@@ -153,8 +158,10 @@ export default {
           name: 'description',
           content:
             'Jadwal kajian ' +
-            (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
-            this.metaWeb.name +
+            (this.metaWeb && this.metaWeb.gender === 1
+              ? 'Ustadz '
+              : ' Ustadzah ') +
+            (this.metaWeb && this.metaWeb.name) +
             ' hari ini dan hari lainnya, pilih jadwal yang kalian inginkan',
         },
         {
@@ -162,8 +169,10 @@ export default {
           name: 'og:title',
           content:
             'Jadwal ' +
-            (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
-            this.metaWeb.name,
+            (this.metaWeb && this.metaWeb.gender === 1
+              ? 'Ustadz '
+              : ' Ustadzah ') +
+            (this.metaWeb && this.metaWeb.name),
         },
         {
           hid: 'og:image',
@@ -176,8 +185,10 @@ export default {
           name: 'og:description',
           content:
             'Jadwal kajian ' +
-            (this.metaWeb.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
-            this.metaWeb.name +
+            (this.metaWeb && this.metaWeb.gender === 1
+              ? 'Ustadz '
+              : ' Ustadzah ') +
+            (this.metaWeb && this.metaWeb.name) +
             ' hari ini dan hari lainnya, pilih jadwal yang kalian inginkan',
         },
         {

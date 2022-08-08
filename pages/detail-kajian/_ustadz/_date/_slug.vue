@@ -256,26 +256,30 @@
 
 <script>
 export default {
-  asyncData({ $axios, route }) {
+  asyncData({ $axios, route, error }) {
     return $axios
       .$get('/get-jadwal/' + route.params.slug)
       .then(({ data }) => {
         const metaWeb = data
         return { metaWeb }
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(({ response }) => {
+        if (response.status === 400) {
+          error({ statusCode: 404, message: 'Post not found' })
+        }
       })
   },
   head() {
     return {
       title:
         'Kajian ' +
-        (this.metaWeb.ustadz.gender === 1 ? 'Ustadz ' : ' Ustadzah ') +
+        (this.metaWeb && this.metaWeb.ustadz.gender === 1
+          ? 'Ustadz '
+          : ' Ustadzah ') +
         ' ' +
-        this.metaWeb.ustadz_name +
+        (this.metaWeb && this.metaWeb.ustadz_name) +
         ' - ' +
-        this.metaWeb.title,
+        (this.metaWeb && this.metaWeb.title),
       meta: [
         { charset: 'utf-8' },
         {
@@ -283,22 +287,26 @@ export default {
           name: 'description',
           content:
             'Cek kajian ' +
-            (this.metaWeb.ustadz.gender === 1 ? 'Ustadz' : ' Ustadzah') +
+            (this.metaWeb && this.metaWeb.ustadz.gender === 1
+              ? 'Ustadz'
+              : ' Ustadzah') +
             ' ' +
-            this.metaWeb.ustadz_name +
+            (this.metaWeb && this.metaWeb.ustadz_name) +
             ' - ' +
-            this.metaWeb.title,
+            (this.metaWeb && this.metaWeb.title),
         },
         {
           hid: 'og:title',
           name: 'og:title',
           content:
             'Kajian ' +
-            (this.metaWeb.ustadz.gender === 1 ? 'Ustadz' : ' Ustadzah') +
+            (this.metaWeb && this.metaWeb.ustadz.gender === 1
+              ? 'Ustadz'
+              : ' Ustadzah') +
             ' ' +
-            this.metaWeb.ustadz_name +
+            (this.metaWeb && this.metaWeb.ustadz_name) +
             ' - ' +
-            this.metaWeb.title,
+            (this.metaWeb && this.metaWeb.title),
         },
         {
           hid: 'og:image',
@@ -311,11 +319,13 @@ export default {
           name: 'og:description',
           content:
             'Cek kajian ' +
-            (this.metaWeb.ustadz.gender === 1 ? 'Ustadz' : ' Ustadzah') +
+            (this.metaWeb && this.metaWeb.ustadz.gender === 1
+              ? 'Ustadz'
+              : ' Ustadzah') +
             ' ' +
-            this.metaWeb.ustadz_name +
+            (this.metaWeb && this.metaWeb.ustadz_name) +
             ' - ' +
-            this.metaWeb.title,
+            (this.metaWeb && this.metaWeb.title),
         },
         {
           hid: 'og:url',

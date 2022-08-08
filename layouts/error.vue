@@ -8,7 +8,7 @@
             src="http://salehriaz.com/404Page/img/404.svg"
             width="300px"
           />
-          <NuxtLink to="/" class="btn-go-home">GO BACK HOME </NuxtLink>
+          <a href="/" class="btn-go-home">GO BACK HOME </a>
         </div>
         <div class="objects">
           <img
