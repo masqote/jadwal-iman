@@ -273,20 +273,22 @@
         class="relative mx-auto w-full max-w-[490px] bg-black bg-opacity-70 h-full"
       >
         <div
-          class="mx-auto rounded-lg w-full max-w-[400px] bg-gray-50 bg-opacity-90 flex items-center justify-center absolute inset-0 my-20"
+          class="mx-auto rounded-lg w-full h-full bg-opacity-90 flex items-center justify-center inset-0"
         >
-          <span
-            @click="toogleModal = !toogleModal"
-            class="absolute text-white -right-2 bg-opacity-80 px-2 rounded-lg bg-red-500 -top-2 z-50 cursor-pointer font-bold"
-            >X</span
-          >
-          <nuxt-img
-            :src="`${$axios.defaults.baseURL}` + data.brosur"
-            class="h-full w-full object-contain cursor-pointer"
-            alt=""
-            sizes="sm:100vw"
-            @click="toogleModal = !toogleModal"
-          />
+          <div class="relative rounded max-w-[400px] mx-4">
+            <span
+              @click="toogleModal = !toogleModal"
+              class="absolute text-white -right-2 bg-opacity-80 px-2 rounded-lg bg-red-500 -top-2 z-50 cursor-pointer font-bold"
+              >X</span
+            >
+            <nuxt-img
+              :src="`${$axios.defaults.baseURL}` + data.brosur"
+              class="max-h-[75vh] h-full w-full rounded-md object-contain cursor-pointer"
+              alt=""
+              sizes="sm:100vw"
+              @click="toogleModal = !toogleModal"
+            />
+          </div>
         </div>
       </div>
     </div>
