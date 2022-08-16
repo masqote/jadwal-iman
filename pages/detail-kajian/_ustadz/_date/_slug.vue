@@ -277,7 +277,7 @@
         >
           <span
             @click="toogleModal = !toogleModal"
-            class="absolute text-white -right-4 bg-opacity-70 px-2 rounded-lg bg-red-500 -top-8 z-50 cursor-pointer font-bold"
+            class="absolute text-white -right-2 bg-opacity-80 px-2 rounded-lg bg-red-500 -top-2 z-50 cursor-pointer font-bold"
             >X</span
           >
           <nuxt-img
