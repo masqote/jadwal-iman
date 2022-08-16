@@ -1,7 +1,7 @@
 export default function ({ $axios, error }) {
-  $axios.onRequest((config) => {
-    console.log('Making request to ' + config.url)
-  })
+  // $axios.onRequest((config) => {
+  //   console.log('Making request to ' + config.url)
+  // })
 
   $axios.onError((err) => {
     // console.log(error.reponse.status)

@@ -23,6 +23,19 @@
     <div v-if="data" class="-mt-10 z-20 relative">
       <div class="bg-white mx-3 pb-10 pt-2 rounded-lg">
         <div class="divide-y px-4 divide-dashed">
+          <div class="py-3" v-if="data.brosur">
+            <div
+              class="h-60 hover:opacity-70 rounded-lg overflow-hidden cursor-pointer"
+            >
+              <nuxt-img
+                :src="`${$axios.defaults.baseURL}` + data.brosur"
+                class="h-full w-full object-cover object-top"
+                alt=""
+                sizes="sm:100vw"
+                @click="toogleModal = !toogleModal"
+              />
+            </div>
+          </div>
           <div class="py-3">
             <div>
               <h1 class="text-xl font-bold">{{ data.title }}</h1>
@@ -251,6 +264,32 @@
     </div>
 
     <div class="invisible mt-10">.</div>
+
+    <div
+      class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
+      v-if="toogleModal"
+    >
+      <div
+        class="relative mx-auto w-full max-w-[490px] bg-black bg-opacity-70 h-full"
+      >
+        <span
+          @click="toogleModal = !toogleModal"
+          class="absolute text-white right-8 bg-primary bg-opacity-70 px-2 rounded-lg top-[72px] z-50 cursor-pointer font-bold"
+          >X</span
+        >
+        <div
+          class="mx-auto rounded-lg w-full overflow-hidden max-w-[400px] flex items-center justify-center absolute inset-0 my-20"
+        >
+          <nuxt-img
+            :src="`${$axios.defaults.baseURL}` + data.brosur"
+            class="h-full w-full object-fill cursor-pointer"
+            alt=""
+            sizes="sm:100vw"
+            @click="toogleModal = !toogleModal"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -350,7 +389,7 @@ export default {
     return {
       slug: this.$route.params.slug,
       data: null,
-
+      toogleModal: false,
       jadwalLainnya: null,
     }
   },
