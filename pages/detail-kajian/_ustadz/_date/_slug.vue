@@ -282,7 +282,7 @@
         >
           <nuxt-img
             :src="`${$axios.defaults.baseURL}` + data.brosur"
-            class="h-full w-full object-fill cursor-pointer"
+            class="h-full w-full object-contain cursor-pointer"
             alt=""
             sizes="sm:100vw"
             @click="toogleModal = !toogleModal"
