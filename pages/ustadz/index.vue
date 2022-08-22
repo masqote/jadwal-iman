@@ -24,6 +24,7 @@
       <hr class="mb-4 border-dashed mx-1" />
       <div
         v-if="ustadz"
+        class="pb-10"
         :class="{ 'grid grid-cols-2 gap-2': ustadz.length > 0 }"
       >
         <div v-for="x in ustadz" :key="x.id">
@@ -43,7 +44,6 @@
             tidak ditemukan!</span
           >
         </div>
-        <div class="invisible mb-10">.</div>
       </div>
     </div>
     <div class="invisible mt-10">.</div>
