@@ -88,12 +88,12 @@
                   >
                     <img src="~/assets/svg/clock1.svg" class="h-4 w-4" alt="" />
                     <div class="flex w-full justify-between">
-                      <span class="font-medium text-xs text-primary-font-dark"
+                      <span class="font-medium text-sm text-primary-font-dark"
                         >{{ $dayjs(y.date_at).format('dddd') | ahad }},{{
                           $dayjs(y.date_at).format('DD MMMM YYYY')
                         }}</span
                       >
-                      <span class="font-medium text-xs text-primary-font-dark"
+                      <span class="font-medium text-sm text-primary-font-dark"
                         >Pukul {{ y.time_at | removeJam }}</span
                       >
                     </div>
