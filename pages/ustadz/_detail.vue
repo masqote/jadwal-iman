@@ -44,17 +44,17 @@
 
       <div class="px-2 space-y-2" v-if="jadwal">
         <div
-          v-for="jadwal in jadwal.data"
-          :key="jadwal.id"
+          v-for="y in jadwal.data"
+          :key="y.id"
           class="rounded-lg overflow-hidden shadow-lg border cursor-pointer hover:opacity-90"
         >
           <NuxtLink
             :to="{
               name: 'detail-kajian-ustadz-date-slug',
               params: {
-                ustadz: jadwal.ustadz.slug,
-                date: jadwal.date_at,
-                slug: jadwal.slug,
+                ustadz: y.ustadz.slug,
+                date: y.date_at,
+                slug: y.slug,
               },
             }"
           >
@@ -62,9 +62,9 @@
               <div
                 class="w-[20%] h-full items-center flex justify-center flex-col border-r"
               >
-                <div v-if="jadwal.brosur" class="w-full h-full">
+                <div v-if="y.brosur" class="w-full h-full">
                   <nuxt-img
-                    :src="`${$axios.defaults.baseURL}` + jadwal.brosur"
+                    :src="`${$axios.defaults.baseURL}` + y.brosur"
                     class="h-full w-full object-cover object-top"
                     alt=""
                     sizes="sm:100vw"
@@ -89,12 +89,12 @@
                     <img src="~/assets/svg/clock1.svg" class="h-4 w-4" alt="" />
                     <div class="flex w-full justify-between">
                       <span class="font-medium text-xs text-primary-font-dark"
-                        >{{ $dayjs(jadwal.date_at).format('dddd') | ahad }},{{
-                          $dayjs(jadwal.date_at).format('DD MMMM YYYY')
+                        >{{ $dayjs(y.date_at).format('dddd') | ahad }},{{
+                          $dayjs(y.date_at).format('DD MMMM YYYY')
                         }}</span
                       >
                       <span class="font-medium text-xs text-primary-font-dark"
-                        >Pukul {{ jadwal.time_at | removeJam }}</span
+                        >Pukul {{ y.time_at | removeJam }}</span
                       >
                     </div>
                   </div>
@@ -107,14 +107,14 @@
                     />
                     <span
                       class="font-semibold text-primary-font-light text-sm line-clamp-2"
-                      >{{ jadwal.title }}
+                      >{{ y.title }}
                     </span>
                   </div>
                   <!-- <div class="h-full flex flex-row space-x-2 items-center">
                   <img src="~/assets/svg/user.svg" class="h-3 w-3" alt="" />
                   <span
                     class="font-bold text-xs text-primary-font-light line-clamp-1"
-                    >{{ gelar }} {{ jadwal.ustadz_name }}</span
+                    >{{ gelar }} {{ y.ustadz_name }}</span
                   >
                 </div> -->
                   <div class="h-full flex flex-row space-x-2 items-center">
@@ -122,10 +122,8 @@
                       class="font-medium text-xs text-primary-font-dark line-clamp-1"
                     >
                       {{
-                        jadwal.address_id
-                          ? jadwal.address.name +
-                            ' - ' +
-                            jadwal.address.province.name
+                        y.address_id
+                          ? y.address.name + ' - ' + y.address.province.name
                           : 'Kajian Online'
                       }}
                     </span>
@@ -134,6 +132,16 @@
               </div>
             </div>
           </NuxtLink>
+        </div>
+        <div
+          v-if="!jadwal.data"
+          class="flex justify-center items-center flex-col px-6"
+        >
+          <img src="~/assets/img/not-found.png" class="w-56 h-56" alt="" />
+          <span class="text-sm text-red-600"
+            >Maaf akhi/ukhti, jadwal {{ gelar }} {{ ustadz.name }} belum
+            tersedia.</span
+          >
         </div>
       </div>
       <div class="px-2 space-y-2" v-else>
