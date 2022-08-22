@@ -29,67 +29,119 @@
     <div
       class="min-h-[70vh] bg-white rounded-t-[2rem] relative -mt-10 z-20 pb-10"
     >
-      <h2 class="pt-4 text-center text-primary">Pilih Jadwal</h2>
-      <div
-        v-if="date"
-        class="flex py-6 overflow-hidden hide-scroll flex-row px-4 pb-10"
-      >
-        <div v-for="x in date" :key="x.full">
-          <CardDate
-            :month="x.bulan"
-            :date="x.tanggal"
-            :day="x.hari"
-            :selected="x.full === selectedDay"
-            @click.native="getJadwal(x.full)"
-            class="mr-2"
-          />
+      <div class="py-2 pt-4">
+        <div v-if="jadwal" class="flex justify-center text-primary mb-2">
+          <span class="text-sm"
+            >Jadwal Kajian {{ gelar }} {{ ustadz.name }}
+          </span>
+        </div>
+        <div v-else class="flex justify-center text-primary mb-2">
+          <span
+            class="h-2 rounded-lg mx-14 w-full bg-gray-300 animate-pulse"
+          ></span>
         </div>
       </div>
-      <div
-        v-else
-        class="flex py-6 flex-row overflow-auto hide-scroll px-4 pb-10"
-      >
-        <div v-for="x in 8" :key="x">
-          <CardDatePulse class="mr-2" />
-        </div>
-      </div>
-      <div v-if="jadwal" class="flex justify-center text-primary mb-2">
-        <span class="text-sm"
-          >Tanggal Dipilih : {{ $dayjs(selectedDay).format('dddd') | ahad }},
-          {{ $dayjs(selectedDay).format('DD MMMM YYYY') }}
-        </span>
-      </div>
-      <div v-if="jadwal" class="space-y-3 px-3">
-        <div v-for="y in jadwal.data" :key="y.id">
-          <CardJadwal
-            :jam="y.time_at"
-            :ustadz="y.ustadz.slug"
-            :ustadzName="y.ustadz_name"
-            :title="y.title"
-            :address="y.address ? y.address.name : 'Kajian Online'"
-            :date="y.date_at"
-            :slug="y.slug"
-            :province="y.province_name ?? ''"
-            :gender="y.ustadz.gender"
-          />
-        </div>
+
+      <div class="px-2 space-y-2" v-if="jadwal">
         <div
-          v-if="!jadwal.data"
-          class="flex justify-center items-center flex-col"
+          v-for="jadwal in jadwal.data"
+          :key="jadwal.id"
+          class="rounded-lg overflow-hidden shadow-lg border cursor-pointer hover:opacity-90"
         >
-          <img src="~/assets/img/not-found.png" class="w-56 h-56" alt="" />
-          <span class="text-sm text-red-600 w-3/4 text-center"
-            >Maaf akhi/ukhti, jadwal
-            <span class="text-primary">{{ gelar }} {{ ustadz.name }}</span> yang
-            anda pilih tidak ditemukan, coba cari tanggal lain</span
+          <NuxtLink
+            :to="{
+              name: 'detail-kajian-ustadz-date-slug',
+              params: {
+                ustadz: jadwal.ustadz.slug,
+                date: jadwal.date_at,
+                slug: jadwal.slug,
+              },
+            }"
           >
+            <div class="w-full flex flex-row h-24 items-center">
+              <div
+                class="w-[20%] h-full items-center flex justify-center flex-col border-r"
+              >
+                <div v-if="jadwal.brosur" class="w-full h-full">
+                  <nuxt-img
+                    :src="`${$axios.defaults.baseURL}` + jadwal.brosur"
+                    class="h-full w-full object-cover object-top"
+                    alt=""
+                    sizes="sm:100vw"
+                  />
+                </div>
+                <div v-else>
+                  <nuxt-img
+                    src="/image-not-found.svg"
+                    class="h-full w-full object-fill object-center p-4"
+                    alt=""
+                    sizes="sm:100vw"
+                  />
+                </div>
+              </div>
+              <div
+                class="w-[80%] h-full items-center flex bg-gradient-to-br from-primary via-primary-light to-primary-verylight"
+              >
+                <div class="flex flex-col h-full w-full px-2">
+                  <div
+                    class="h-full flex flex-row space-x-2 items-center w-full"
+                  >
+                    <img src="~/assets/svg/clock1.svg" class="h-4 w-4" alt="" />
+                    <div class="flex w-full justify-between">
+                      <span class="font-medium text-xs text-primary-font-dark"
+                        >{{ $dayjs(jadwal.date_at).format('dddd') | ahad }},{{
+                          $dayjs(jadwal.date_at).format('DD MMMM YYYY')
+                        }}</span
+                      >
+                      <span class="font-medium text-xs text-primary-font-dark"
+                        >Pukul {{ jadwal.time_at | removeJam }}</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="h-full flex flex-row space-x-2 items-center">
+                    <img
+                      src="~/assets/svg/book.svg"
+                      class="h-6 w-6 mt-1"
+                      alt=""
+                    />
+                    <span
+                      class="font-semibold text-primary-font-light text-sm line-clamp-2"
+                      >{{ jadwal.title }}
+                    </span>
+                  </div>
+                  <!-- <div class="h-full flex flex-row space-x-2 items-center">
+                  <img src="~/assets/svg/user.svg" class="h-3 w-3" alt="" />
+                  <span
+                    class="font-bold text-xs text-primary-font-light line-clamp-1"
+                    >{{ gelar }} {{ jadwal.ustadz_name }}</span
+                  >
+                </div> -->
+                  <div class="h-full flex flex-row space-x-2 items-center">
+                    <span
+                      class="font-medium text-xs text-primary-font-dark line-clamp-1"
+                    >
+                      {{
+                        jadwal.address_id
+                          ? jadwal.address.name +
+                            ' - ' +
+                            jadwal.address.province.name
+                          : 'Kajian Online'
+                      }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </NuxtLink>
         </div>
       </div>
-      <div v-else class="space-y-3 px-3">
+      <div class="px-2 space-y-2" v-else>
         <div v-for="y in 5" :key="y">
           <CardJadwalPulse />
         </div>
       </div>
+
       <div class="mt-10 px-3">
         <div class="flex justify-between">
           <span class="text-sm text-primary">Ustadz Favorit Lainnya:</span>
@@ -218,9 +270,12 @@ export default {
         return value[0]
       }
     },
+    removeJam(val) {
+      val = val.slice(0, -3)
+      return val
+    },
   },
   mounted() {
-    this.getDate()
     this.getUstadz()
     this.getUstadzLainnya()
   },
@@ -237,18 +292,11 @@ export default {
           this.getJadwal()
         })
     },
-    getDate() {
-      this.$axios.$get('date-single').then(({ data }) => {
-        this.date = data
-      })
-    },
-    getJadwal(date = this.$today) {
-      this.selectedDay = date
+    getJadwal() {
       this.jadwal = null
       this.$axios
         .$get('get-jadwal-ustadz', {
           params: {
-            day: date,
             id: this.ustadz.id,
           },
         })

@@ -148,7 +148,7 @@
             </div>
           </div>
           <div class="py-3">
-            <div class="flex flex-row items-center w-full">
+            <div class="flex flex-row items-center">
               <div class="flex flex-row space-x-3">
                 <img
                   src="~/assets/svg/description.svg"
@@ -156,9 +156,9 @@
                   alt=""
                 />
                 <span
-                  class="px-2"
-                  v-html="data.deskripsi"
+                  class="px-2 break-all"
                   v-if="data.deskripsi"
+                  v-html="data.deskripsi"
                 ></span>
                 <span class="px-2" v-else>-</span>
               </div>
