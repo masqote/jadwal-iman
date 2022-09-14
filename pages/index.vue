@@ -56,6 +56,51 @@
         </div>
       </div>
     </div>
+
+    <!-- EVENT -->
+
+    <div class="px-4 py-4 mt-4">
+      <div v-if="date" class="flex justify-between items-center">
+        <span class="text-lg text-primary">Event <br /> </span>
+        <NuxtLink to="/event">
+          <div class="flex flex-row items-center mt-1 space-x-1">
+            <img src="~/assets/svg/eye1.svg" class="h-4 w-4" alt="" />
+            <span class="text-xs text-primary">Lihat Semua</span>
+          </div>
+        </NuxtLink>
+      </div>
+      <div v-else class="flex justify-between items-center">
+        <span class="text-lg text-primary">
+          <br />
+          <p class="text-sm"><br /></p>
+        </span>
+
+        <div class="flex flex-row items-center mt-1 space-x-1">
+          <span class="text-xs text-primary"><br /></span>
+        </div>
+      </div>
+
+      <div v-if="event">
+        <div class="py-1" v-for="i in event" :key="i.id">
+          <CardEvent
+            :title="i.title"
+            :start_date="i.start_date"
+            :end_date="i.end_date"
+            :address="i.address"
+            :foto="i.foto"
+          />
+        </div>
+      </div>
+      <div v-else>
+        <div class="py-1" v-for="i in 3" :key="i">
+          <CardEventPulse />
+        </div>
+      </div>
+    </div>
+
+    <!-- END EVENT -->
+
+    <!-- KAJIAN HARI INI -->
     <div class="px-4 mt-4">
       <div v-if="date" class="flex justify-between items-center">
         <span class="text-lg text-primary"
@@ -109,6 +154,8 @@
         </div>
       </div>
     </div>
+    <!-- END KAJIAN HARI INI -->
+
     <!-- <div class="px-4 py-4 bg-white">
       <div class="flex justify-between items-center">
         <span class="text-lg text-primary">Berita Terbaru </span>
@@ -184,6 +231,7 @@ export default {
       jadwal: null,
       ustadz: null,
       selectedDay: this.$today,
+      event: null,
     }
   },
   mounted() {
@@ -193,6 +241,8 @@ export default {
     this.getDate()
     // Load Jadwal berdasarkan tanggal yang dipilih
     this.getJadwal()
+
+    this.getEvent()
   },
   methods: {
     getUstadz() {
@@ -214,14 +264,20 @@ export default {
           },
         })
         .then(({ data }) => {
-          const timeNow = this.$dayjs(new Date()).format('HH:mm:ss')
-          const filteredData = data.filter((x) => x.time_at > timeNow)
-          if (filteredData.length > 0) {
-            this.jadwal = filteredData
-          } else {
-            this.jadwal = data
-          }
+          this.jadwal = data
+          // const timeNow = this.$dayjs(new Date()).format('HH:mm:ss')
+          // const filteredData = data.filter((x) => x.time_at > timeNow)
+          // if (filteredData.length > 0) {
+          //   this.jadwal = filteredData
+          // } else {
+          //   this.jadwal = data
+          // }
         })
+    },
+    getEvent() {
+      this.$axios.$get('get-event').then(({ data }) => {
+        this.event = data
+      })
     },
   },
 }

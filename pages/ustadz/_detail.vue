@@ -42,11 +42,36 @@
         </div>
       </div>
 
+      <div class="p-2 flex justify-center pb-4">
+        <div class="flex space-x-2 text-xs">
+          <div
+            class="px-3 py-2 rounded-xl cursor-pointer"
+            @click="setIsActive('now')"
+            :class="{
+              'bg-primary text-white': isActive === 'now',
+              'bg-gray-400 text-black': isActive !== 'now',
+            }"
+          >
+            Kajian Tersedia
+          </div>
+          <div
+            class="px-3 py-2 rounded-xl cursor-pointer"
+            @click="setIsActive('old')"
+            :class="{
+              'bg-primary text-white': isActive === 'old',
+              'bg-gray-400 text-black': isActive !== 'old',
+            }"
+          >
+            Kajian yang Terlewat
+          </div>
+        </div>
+      </div>
+      <!-- CARD JADWAL USTADZ  -->
       <div class="px-2 space-y-2" v-if="jadwal">
         <div
           v-for="y in jadwal.data"
           :key="y.id"
-          class="rounded-lg overflow-hidden shadow-lg border cursor-pointer hover:opacity-90"
+          class="rounded-lg overflow-hidden shadow-lg border cursor-pointer hover:opacity-90 bg-primary-verylight"
         >
           <NuxtLink
             :to="{
@@ -60,7 +85,7 @@
           >
             <div class="w-full flex flex-row h-24 items-center">
               <div
-                class="w-[20%] h-full items-center flex justify-center flex-col border-r"
+                class="w-[20%] h-full items-center flex justify-center flex-col"
               >
                 <div v-if="y.brosur" class="w-full h-full">
                   <nuxt-img
@@ -70,7 +95,7 @@
                     sizes="sm:100vw"
                   />
                 </div>
-                <div v-else>
+                <div v-else class="">
                   <nuxt-img
                     src="/image-not-found.svg"
                     class="h-full w-full object-fill object-center p-4"
@@ -149,6 +174,7 @@
           <CardJadwalPulse />
         </div>
       </div>
+      <!-- END CARD JADWAL USTADZ -->
 
       <div class="mt-10 px-3">
         <div class="flex justify-between">
@@ -266,6 +292,7 @@ export default {
       date: null,
       selectedDay: this.$today,
       jadwal: null,
+      isActive: 'now',
     }
   },
 
@@ -288,6 +315,10 @@ export default {
     this.getUstadzLainnya()
   },
   methods: {
+    setIsActive(val) {
+      this.isActive = val
+      this.getJadwal(val)
+    },
     getUstadz() {
       this.$axios
         .$get('get-ustadz-detail', {
@@ -300,12 +331,13 @@ export default {
           this.getJadwal()
         })
     },
-    getJadwal() {
+    getJadwal(val) {
       this.jadwal = null
       this.$axios
         .$get('get-jadwal-ustadz', {
           params: {
             id: this.ustadz.id,
+            filter: val,
           },
         })
         .then((data) => {

@@ -216,7 +216,7 @@
             >Kajian Lainnya di {{ data.province_name }} :</span
           >
           <span class="text-sm text-primary"
-            >{{ $dayjs(data.date_at).format('dddd') | ahad }},
+            >Pada Hari : {{ $dayjs(data.date_at).format('dddd') | ahad }},
             {{ $dayjs(data.date_at).format('DD MMMM YYYY') }}</span
           >
         </div>
@@ -416,8 +416,7 @@ export default {
         .$get('/get-jadwal/' + val)
         .then(({ data }) => {
           this.data = data
-
-          this.getJadwalLainnya(data.date_at, data.province_id)
+          this.getJadwalLainnya(data.date_at, data.address.province_id)
         })
         .catch((err) => {
           if (err.response.status === 404) {
