@@ -50,8 +50,13 @@
                 <p class="w-9/12 text-sm">
                   {{ $dayjs(event.start_date).format('dddd') }},
                   {{ $dayjs(event.start_date).format('DD') }}
-                  {{ $dayjs(event.start_date).format('MMMM YYYY') }} -
-                  {{ $dayjs(event.start_date).format('HH:mm') }}
+                  {{ $dayjs(event.start_date).format('MMMM YYYY') }}
+                  <span
+                    v-if="$dayjs(event.start_date).format('HH:mm') != '00:00'"
+                  >
+                    -
+                    {{ $dayjs(event.start_date).format('HH:mm') }}
+                  </span>
                 </p>
               </div>
               <div class="flex flex-row space-x-2 items-center">
@@ -60,8 +65,16 @@
                 <p class="w-9/12 text-sm">
                   {{ $dayjs(event.end_date).format('dddd') }},
                   {{ $dayjs(event.end_date).format('DD') }}
-                  {{ $dayjs(event.end_date).format('MMMM YYYY') }} -
-                  {{ $dayjs(event.start_date).format('HH:mm') }}
+                  {{ $dayjs(event.end_date).format('MMMM YYYY') }}
+                  <span
+                    v-if="
+                      $dayjs(event.end_date).format('HH:mm') != '00:00' &&
+                      $dayjs(event.end_date).format('HH:mm') != '23:59'
+                    "
+                  >
+                    -
+                    {{ $dayjs(event.end_date).format('HH:mm') }}
+                  </span>
                 </p>
               </div>
               <div class="flex flex-row space-x-2 items-start">
