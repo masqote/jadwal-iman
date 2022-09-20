@@ -82,13 +82,20 @@
 
       <div v-if="event">
         <div class="py-1" v-for="i in event" :key="i.id">
-          <CardEvent
-            :title="i.title"
-            :start_date="i.start_date"
-            :end_date="i.end_date"
-            :address="i.address"
-            :foto="i.foto"
-          />
+          <NuxtLink
+            :to="{
+              name: 'event-detail',
+              params: { detail: i.slug },
+            }"
+          >
+            <CardEvent
+              :title="i.title"
+              :start_date="i.start_date"
+              :end_date="i.end_date"
+              :address="i.address"
+              :foto="i.foto"
+            />
+          </NuxtLink>
         </div>
       </div>
       <div v-else>
@@ -189,7 +196,7 @@
 export default {
   head: {
     title: 'Aplikasi Pencarian Jadwal Ustadz dan Event Muslim',
-    titleTemplate: 'Jadwaliman | %s',
+    titleTemplate: 'Jadwal Iman | %s',
     meta: [
       { charset: 'utf-8' },
       {
@@ -202,7 +209,7 @@ export default {
         hid: 'og:title',
         name: 'og:title',
         content:
-          'Jadwaliman | Aplikasi Pencarian Jadwal Ustadz dan Event Muslim',
+          'Jadwal Iman | Aplikasi Pencarian Jadwal Ustadz dan Event Muslim',
       },
       {
         hid: 'og:image',

@@ -297,10 +297,15 @@
 
 <script>
 export default {
-  asyncData({ $axios, route, error }) {
+  asyncData({ $axios, route, error, $dayjs }) {
     return $axios
       .$get('/get-jadwal/' + route.params.slug)
       .then(({ data }) => {
+        // const bulan = {
+        //   asd: $dayjs(data.date_at).format('YYYY/MM/DD'),
+        // }//
+        data.bulan = $dayjs(data.date_at).format('MMMM')
+        data.tahun = $dayjs(data.date_at).format('YYYY')
         const metaWeb = data
         return { metaWeb }
       })
@@ -319,6 +324,10 @@ export default {
           : ' Ustadzah ') +
         ' ' +
         (this.metaWeb && this.metaWeb.ustadz_name) +
+        ' ' +
+        (this.metaWeb && this.metaWeb.bulan) +
+        ' ' +
+        (this.metaWeb && this.metaWeb.tahun) +
         ' - ' +
         (this.metaWeb && this.metaWeb.title),
       meta: [
@@ -327,12 +336,24 @@ export default {
           hid: 'description',
           name: 'description',
           content:
-            'Cek kajian ' +
+            'Jadwal kajian ' +
             (this.metaWeb && this.metaWeb.ustadz.gender === 1
               ? 'Ustadz'
               : ' Ustadzah') +
             ' ' +
             (this.metaWeb && this.metaWeb.ustadz_name) +
+            ' ' +
+            (this.metaWeb && this.metaWeb.bulan) +
+            ' ' +
+            (this.metaWeb && this.metaWeb.tahun) +
+            ' di ' +
+            (this.metaWeb && this.metaWeb.address_id
+              ? this.metaWeb.address.name
+              : 'Online') +
+            ' ' +
+            (this.metaWeb && this.metaWeb.province_name
+              ? this.metaWeb.province_name
+              : '') +
             ' - ' +
             (this.metaWeb && this.metaWeb.title),
         },
@@ -342,10 +363,14 @@ export default {
           content:
             'Kajian ' +
             (this.metaWeb && this.metaWeb.ustadz.gender === 1
-              ? 'Ustadz'
-              : ' Ustadzah') +
+              ? 'Ustadz '
+              : ' Ustadzah ') +
             ' ' +
             (this.metaWeb && this.metaWeb.ustadz_name) +
+            ' ' +
+            (this.metaWeb && this.metaWeb.bulan) +
+            ' ' +
+            (this.metaWeb && this.metaWeb.tahun) +
             ' - ' +
             (this.metaWeb && this.metaWeb.title),
         },
@@ -353,18 +378,32 @@ export default {
           hid: 'og:image',
           name: 'og:image',
           content:
-            'https://jadwaliman.id/_nuxt/img/jadwal_iman_primary.6ccf4fc.png',
+            this.metaWeb && this.metaWeb.brosur
+              ? this.$axios.defaults.baseURL + this.metaWeb.brosur
+              : 'https://jadwaliman.id/_nuxt/img/jadwal_iman_primary.6ccf4fc.png',
         },
         {
           hid: 'og:description',
           name: 'og:description',
           content:
-            'Cek kajian ' +
+            'Jadwal kajian ' +
             (this.metaWeb && this.metaWeb.ustadz.gender === 1
               ? 'Ustadz'
               : ' Ustadzah') +
             ' ' +
             (this.metaWeb && this.metaWeb.ustadz_name) +
+            ' ' +
+            (this.metaWeb && this.metaWeb.bulan) +
+            ' ' +
+            (this.metaWeb && this.metaWeb.tahun) +
+            ' di ' +
+            (this.metaWeb && this.metaWeb.address_id
+              ? this.metaWeb.address.name
+              : 'Online') +
+            ' ' +
+            (this.metaWeb && this.metaWeb.province_name
+              ? this.metaWeb.province_name
+              : '') +
             ' - ' +
             (this.metaWeb && this.metaWeb.title),
         },
@@ -416,7 +455,10 @@ export default {
         .$get('/get-jadwal/' + val)
         .then(({ data }) => {
           this.data = data
-          this.getJadwalLainnya(data.date_at, data.address.province_id)
+          this.getJadwalLainnya(
+            data.date_at,
+            data.address ? data.address.province_id : ''
+          )
         })
         .catch((err) => {
           if (err.response.status === 404) {

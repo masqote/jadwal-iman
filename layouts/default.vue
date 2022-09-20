@@ -20,7 +20,7 @@ export default {
       lang: 'id',
     },
     title: 'Cari Jadwal Kajian',
-    titleTemplate: 'Jadwaliman | %s',
+    titleTemplate: 'Jadwal Iman | %s',
     meta: [
       { charset: 'utf-8' },
       {

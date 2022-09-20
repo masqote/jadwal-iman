@@ -243,12 +243,12 @@ export default {
           hid: 'description',
           name: 'description',
           content:
-            'Jadwal kajian ' +
+            'Cek jadwal kajian ' +
             (this.metaWeb && this.metaWeb.gender === 1
               ? 'Ustadz '
               : ' Ustadzah ') +
             (this.metaWeb && this.metaWeb.name) +
-            ' hari ini dan hari lainnya, pilih jadwal yang kalian inginkan',
+            ' hari ini, cek jadwal kajian terbaru atau pilih hari lainnya sesuai dengan yang kalian inginkan',
         },
         {
           hid: 'og:title',
@@ -270,12 +270,12 @@ export default {
           hid: 'og:description',
           name: 'og:description',
           content:
-            'Jadwal kajian ' +
+            'Cek jadwal kajian ' +
             (this.metaWeb && this.metaWeb.gender === 1
               ? 'Ustadz '
               : ' Ustadzah ') +
             (this.metaWeb && this.metaWeb.name) +
-            ' hari ini dan hari lainnya, pilih jadwal yang kalian inginkan',
+            ' hari ini, cek jadwal kajian terbaru atau pilih hari lainnya sesuai dengan yang kalian inginkan',
         },
         {
           hid: 'og:url',
